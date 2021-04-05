@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :users, only: [:index, :edit, :update]
     resources :posts
-    resources :genres, only: [:index, :edit, :create, :update]
+    resources :genres, only: [:index, :edit, :create, :update, :destroy]
   end
   devise_for :users, controllers: {
     sessions: "users/sessions",

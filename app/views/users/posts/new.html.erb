@@ -1,0 +1,27 @@
+
+<h1>新規投稿</h1>
+
+<table class="table table-borderless">
+  <%= form_with model:@post, local:true do |f| %>
+    <tr>
+      <td>画像</td>
+      <td><%= f.attachment_field :image %></td>
+    </tr>
+    <tr>
+      <td>タイトル</td>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr>
+      <td>詳細</td>
+      <td><%= f.text_area :body %></td>
+    </tr>
+    <tr>
+      <td>価格</td>
+      <td><%= f.text_field :price %></td>
+    </tr>
+    <tr>
+      <td>所在地</td>
+      <td><%= f.text_field :address %></td>
+    </tr>
+  <% end %>
+</table>

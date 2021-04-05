@@ -1,0 +1,6 @@
+<% @post.each do |post| %>
+  <div class="post">
+    <h3 class="post-title"><%= post.title %></h3>
+    <div class="post-image"><%= attachment_image_tag post, :image, fallback: "#" %></div>
+  </div>
+<% end %>

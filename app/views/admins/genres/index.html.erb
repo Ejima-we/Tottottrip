@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>ジャンル登録</h1>
+  <div class="row">
+    <div class="col-5">
+    <table class="table table-borderless">
+      <%= form_with model:[:admins, @genre], local:true do |f| %>
+        <tr>
+          <td>ジャンル名</td>
+          <td><%= f.text_field :name %></td>
+          <td><%= f.submit "登録", class:"btn btn-success" %></td>
+        </tr>
+      <% end %>
+    </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5">
+    <h2>ジャンル一覧</h2>
+    <table class="table">
+      <% @genres.each do |genre| %>
+        <tr>
+          <td><%= genre.name %></td>
+          <td><%= link_to "編集", edit_admins_genre_path(genre.id), class:"btn btn-info" %></td>
+        </tr>
+      <% end %>
+    </table>
+    </div>
+  </div>
+</div>
