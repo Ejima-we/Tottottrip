@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get "users/leave" => "users#leave"
     patch "users/withdraw" => "users#withdraw"
     resources :posts do
-      resources :comments, only: [:edit, :create, :update, :destroy]
+      resources :comments, only: [:show, :create, :update, :destroy]
       resource :favorites, only: [:index, :create, :destroy]
     end
     get "searches" => "searches#search"

@@ -1,4 +1,4 @@
-
+<div class="container">
 <h1>新規投稿</h1>
 
 <table class="table table-borderless">
@@ -6,6 +6,11 @@
     <tr>
       <td>画像</td>
       <td><%= f.attachment_field :image %></td>
+    </tr>
+    <tr>
+      <td>
+        <div></div>
+      </td>
     </tr>
     <tr>
       <td>タイトル</td>
@@ -16,6 +21,10 @@
       <td><%= f.text_area :body %></td>
     </tr>
     <tr>
+      <td>ジャンル名</td>
+      <td><%= f.collection_select :genre_id, Genre.all, :id, :name,include_blank: "選択して下さい" %></td>
+    </tr>
+    <tr>
       <td>価格</td>
       <td><%= f.text_field :price %></td>
     </tr>
@@ -23,5 +32,9 @@
       <td>所在地</td>
       <td><%= f.text_field :address %></td>
     </tr>
+    <tr>
+      <td><%= f.submit "作成", class:"btn btn-info" %></td>
+    </tr>
   <% end %>
 </table>
+</div>

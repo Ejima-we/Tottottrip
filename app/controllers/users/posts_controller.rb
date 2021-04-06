@@ -10,6 +10,8 @@ class Users::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = User.find(@post.user.id)
+    @comment = Comment.new
   end
 
   def edit
@@ -18,7 +20,7 @@ class Users::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user_id == current_user_id
+    @post.user_id = current_user.id
     if @post.save
       redirect_to posts_path
     else
@@ -45,6 +47,6 @@ class Users::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:genre_id, :title, :body, :image, :price, :address)
+    params.require(:post).permit(:user_id, :genre_id, :title, :body, :image, :price, :address)
   end
 end

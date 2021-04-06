@@ -34,3 +34,4 @@ $(document).ready(function(){
     $(".circle-bg").removeClass('circleactive');
   });
 });
+
