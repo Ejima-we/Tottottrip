@@ -24,7 +24,7 @@
   </div>
     <% if @tags.present? %>
           <% @tags.each do |tag| %>
-            <%= link_to "#{tag.name}(#{tag.taggings_count})" %>
+            <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_path(tag.name) %>
           <% end %>
     <% end %>
   <table class="table table-bordered row mx-auto">
@@ -40,28 +40,20 @@
       <td class="table-active">所在地</td>
       <td><%= @post.address %></td>
     </tr>
-    <tr>
-      <td class="table-active">作成日</td>
-      <td><%= @post.created_at.strftime("%Y/%m/%d") %></td>
-    </tr>
-    <tr>
-      <td class="table-active">作成者</td>
-      <td><%= @post.user.name %></td>
-    </tr>
   </table>
-
-        <% if user_signed_in? %>
-        <% if current_user.id == @post.user_id %>
-          <%= link_to "投稿を編集する", edit_post_path(@post.id), class:"btn btn-success", data: {"turbolinks" => false} %>
+    <% if user_signed_in? %>
+      <% if current_user.id == @post.user_id %>
+        <%= link_to "投稿を編集する", edit_post_path(@post.id), class:"btn btn-success", data: {"turbolinks" => false} %>
+      <% end %>
+    <p><%= @post.user.name %>  <%= @post.created_at.strftime("%Y/%m/%d") %></p>
+      <div class="comments mt-5">
+        <h4>コメント入力フォーム</h4></br>
+        <%= form_with(model:[@post, @comment]) do |f| %>
+          <%= f.text_area :comment, rows:"5", class:"col-8", id: "text_area" %></br>
+          <%= f.submit "送信する" %>
         <% end %>
-  <div class="comments mt-5">
-    <h4>コメント入力フォーム</h4></br>
-    <%= form_with(model:[@post, @comment]) do |f| %>
-      <%= f.text_area :comment, rows:"5", class:"col-8", id: "text_area" %></br>
-      <%= f.submit "送信する" %>
+      </div>
     <% end %>
-  </div>
-  <% end %>
   <div class="row mt-3">
     <table class="table">
       <% @post.comments.each do |comment| %>
