@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>編集</h1>
+
+  <div class="row">
+    <%= render "form", post: @post, submit: "更新" %>
+  </div>
+  <%= link_to "削除", post_path(@post.id), method: :delete, class:"btn btn-danger" %>
+</div>

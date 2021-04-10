@@ -6,5 +6,21 @@ class Post < ApplicationRecord
   belongs_to :genre
 
   attachment :image
+  acts_as_taggable
+
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
+
+  def self.sort(selection)
+    case selection
+    when "new"
+      return all.order(created_at: :DESC)
+    when "old"
+      return all.order(created_ad: :ASC)
+    when "favorites"
+      return find(Favorite.group(:post_id).order(Arel.sql("count(post_id) desc")).pluck(:post_id))
+    end
+  end
 
 end

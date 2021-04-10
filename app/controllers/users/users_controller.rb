@@ -1,6 +1,7 @@
 class Users::UsersController < ApplicationController
   
   def show
+    @user = current_user
   end
   
   def edit
@@ -15,4 +16,9 @@ class Users::UsersController < ApplicationController
   def withdraw
   end
   
+  def favorite
+    @user = User.find_by(id: params[:id])
+    # userに関するデータを取得
+    @favorites = Favorite.where(user_id: @user.id)
+  end
 end

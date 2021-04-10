@@ -22,6 +22,12 @@
   padding: 0;
 }
 
+header {
+  height: 70px;
+  background-color: #9dd3a8;
+  padding-left: 20px;
+}
+
  /*ヘッダーのボタン*/
 .openbtn {
   position: fixed;
@@ -145,7 +151,7 @@
   height: 100px;
   border-radius: 50%;
   background: #999;
-  opacity: 0.8;
+  opacity: 0.9;
   /*丸のスタート位置*/
   /*scaleを最初は0に*/
   transform: scale(0);
@@ -159,15 +165,35 @@
   transform: scale(50);
 }
 
-nav ul {
-  list-style: none;
-  text-align: center;
+main {
+  background-color: #f4f0e6;
 }
 
-nav ul li a {
-  display: inline-block;
-  text-decoration: none;
-  color: #000;
-  padding: 10px;
-  font-size: 20px;
+h1 {
+  font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+}
+.box-dotted-line {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  background: #f0f7ff;
+  border: dashed 2px #5b8bd0;/*点線*/
+}
+
+.post {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.post-content {
+  margin: 10px;
+  background: #fff0cd;
+  box-shadow: 0px 0px 0px 5px #fff0cd;
+  border: dashed 2px white;
+  padding: 0.2em 0.5em;
+  color: #454545;
+}
+
+.likes {
+  color: red;
 }

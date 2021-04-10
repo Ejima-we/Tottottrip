@@ -1,35 +1,67 @@
 <div class="container">
 
 <h1>投稿詳細</h1>
-
-  <div class="row">
-    <h3><%= @post.title %></h3>
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <%= attachment_image_tag @post, :image, :fill, 800, 500, fallback: "no_image.jpg" %>
+    </div>
   </div>
-  <div class="row mx-aut">
-    <%= attachment_image_tag @post, :image, :fill, 300, 300, fallback: "no_image.jpg" %>
+  <div class="row mt-5">
+    <h2><%= @post.title %></h2>
+          <% if @post.favorited_by?(current_user) %>
+            <p>
+              <%= link_to post_favorites_path(@post), method: :delete do %>
+                <i class="fas fa-heart"></i> <%= @post.favorites.count %>いいね
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to post_favorites_path(@post), method: :post do %>
+                <i class="far fa-heart"></i> <%= @post.favorites.count %>いいね
+              <% end %>
+            </p>
+          <% end %>
   </div>
-  <table class="table table-borderless row mx-auto">
+    <% if @tags.present? %>
+          <% @tags.each do |tag| %>
+            <%= link_to "#{tag.name}(#{tag.taggings_count})" %>
+          <% end %>
+    <% end %>
+  <table class="table table-bordered row mx-auto">
     <tr>
-      <td>詳細</td>
+      <td class="table-active">詳細</td>
       <td><%= @post.body %></td>
     </tr>
     <tr>
-      <td>価格</td>
+      <td class="table-active">価格</td>
       <td><%= @post.price %></td>
     </tr>
     <tr>
-      <td>所在地</td>
+      <td class="table-active">所在地</td>
       <td><%= @post.address %></td>
+    </tr>
+    <tr>
+      <td class="table-active">作成日</td>
+      <td><%= @post.created_at.strftime("%Y/%m/%d") %></td>
+    </tr>
+    <tr>
+      <td class="table-active">作成者</td>
+      <td><%= @post.user.name %></td>
     </tr>
   </table>
 
-  <div class="comments">
+        <% if user_signed_in? %>
+        <% if current_user.id == @post.user_id %>
+          <%= link_to "投稿を編集する", edit_post_path(@post.id), class:"btn btn-success", data: {"turbolinks" => false} %>
+        <% end %>
+  <div class="comments mt-5">
     <h4>コメント入力フォーム</h4></br>
     <%= form_with(model:[@post, @comment]) do |f| %>
       <%= f.text_area :comment, rows:"5", class:"col-8", id: "text_area" %></br>
       <%= f.submit "送信する" %>
     <% end %>
   </div>
+  <% end %>
   <div class="row mt-3">
     <table class="table">
       <% @post.comments.each do |comment| %>

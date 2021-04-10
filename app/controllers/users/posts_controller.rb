@@ -4,20 +4,6 @@ class Users::PostsController < ApplicationController
     @post = Post.new
   end
 
-  def index
-    @posts = Post.all
-  end
-
-  def show
-    @post = Post.find(params[:id])
-    @user = User.find(@post.user.id)
-    @comment = Comment.new
-  end
-
-  def edit
-    @post = Post.find(params[:id])
-  end
-
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -28,9 +14,28 @@ class Users::PostsController < ApplicationController
     end
   end
 
+  def index
+    @posts = Post.all
+  end
+
+  def rank
+    @all_ranks = Post.find(Favorite.group(:post_id).order("count(post_id)desc").limit(3).pluck(:post_id))
+  end
+
+  def show
+    @post = Post.find(params[:id])
+    @user = User.find(@post.user.id)
+    @comment = Comment.new
+    @tags = @post.tag_counts_on(:tags)
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
   def update
     @post = Post.find(params[:id])
-    if @post = Post.update(post_params)
+    if @post.update(post_params)
       redirect_to post_path(@post.id)
     else
       render :edit
@@ -43,10 +48,14 @@ class Users::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def search
+    selection = params[:keyword]
+    @posts = Post.sort(selection)
+  end
 
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :genre_id, :title, :body, :image, :price, :address)
+    params.require(:post).permit(:user_id, :genre_id, :title, :body, :image, :price, :address, :tag_list)
   end
 end
