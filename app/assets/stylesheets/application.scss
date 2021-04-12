@@ -28,6 +28,9 @@ header {
   padding-left: 20px;
 }
 
+.container {
+  padding-top: 40px;
+}
  /*ヘッダーのボタン*/
 .openbtn {
   position: fixed;
@@ -174,7 +177,6 @@ h1 {
 }
 .box-dotted-line {
   padding: 0.5em 1em;
-  margin: 2em 0;
   background: #f0f7ff;
   border: dashed 2px #5b8bd0;/*点線*/
 }

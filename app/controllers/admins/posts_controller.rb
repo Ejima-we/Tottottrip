@@ -1,23 +1,8 @@
 class Admins::PostsController < ApplicationController
-  
+
   def index
+    @posts_all = Post.all.order(created_at: :desc)
+    @posts = @posts_all.page(params[:page]).per(15)
   end
-  
-  def show
-  end
-  
-  def edit
-  end
-  def new
-  end
-  
-  def create
-  end
-  
-  def update
-  end
-  
-  def destroy
-  end
-  
+
 end

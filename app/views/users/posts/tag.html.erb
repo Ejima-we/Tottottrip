@@ -1,0 +1,6 @@
+<div class="container">
+<% if @post.present? %>
+    <h1>「<%= @tag %>」に関連する投稿</h1>
+    <%= render "search_result", posts: @post %>
+<% end %>
+</div>

@@ -13,7 +13,7 @@
             <td>プロフィール</td>
             <td><%= f.text_area :profile %></td>
           </tr>
-          <% if admins_signed_in? %>
+          <% if admin_signed_in? %>
           <tr>
             <td>会員ステータス</td>
             <td>

@@ -1,25 +1,21 @@
 <div class="container">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="row mt-5 box-dotted-line">
+    <div class="row box-dotted-line">
       <h3>ログイン　<span class="small"><i class="fas fa-exclamation-triangle"></i> 管理者のログイン画面です</span></h3>
       <table class="table table-borderless my-5">
-        <tr>
-          <td>Eメール</td>
-          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-        </tr>
-        <tr>
-          <td>パスワード</td>
-          <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= f.submit "ログイン", class:"btn btn-info" %></td>
-        </tr>
-
-        <div class="actions">
-
-        </div>
-      </table>
-    </div>
-  <% end %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <tr>
+            <td>Eメール</td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+          </tr>
+          <tr>
+            <td>パスワード</td>
+            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit "ログイン", class:"btn btn-info" %></td>
+          </tr>
+       <% end %>
+    </table>
+  </div>
 </div>

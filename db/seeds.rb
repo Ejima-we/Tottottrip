@@ -8,5 +8,5 @@
 
 Admin.create!( #ユーザーに見せる用のエラー出ないときはこちらの落ち度でエラーになっている可能性があるため、!をつけてエラー文を表示できるようにしている。
    email: 'admin@admin.com',
-   password: 'admin'
+   password: 'adminadmin'
 )

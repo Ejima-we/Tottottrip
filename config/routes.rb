@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   }
   namespace :admins do
     resources :users, only: [:index, :edit, :update]
-    resources :posts
+    resources :posts, only: :index
     resources :genres, only: [:index, :edit, :create, :update, :destroy]
   end
 
@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     registrations: "users/registrations",
   }
+
+  devise_scope :user do
+    post "users/guest_sign_in" => "users/sessions#guest_sign_in"
+  end
 
   scope module: :users do
     root "homes#top"
@@ -23,11 +27,12 @@ Rails.application.routes.draw do
     get "users/information/edit" => "users#edit", as: "edit_information"
     patch "users/information" => "users#update"
     get "posts/ranks" => "posts#rank"
+    get "posts/tags" => "posts#tag"
     resources :posts do
-      resources :comments, only: [:show, :create, :update, :destroy]
+      resources :comments, only: [:edit, :create, :update, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-    
+
     get "search" => "posts#search"
     get "searches" => "searches#search"
   end

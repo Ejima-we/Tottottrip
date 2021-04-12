@@ -15,7 +15,8 @@ class Users::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(create_at: :desc)
+    @posts = @posts_all.page(params[:page]).per(10)
   end
 
   def rank
@@ -26,6 +27,7 @@ class Users::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = User.find(@post.user.id)
     @comment = Comment.new
+    @comments_all = Comment.all
     @tags = @post.tag_counts_on(:tags)
   end
 
@@ -46,6 +48,15 @@ class Users::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
+  end
+
+  def tag
+    # タグをPostモデルから降順で取得
+    @tags = Post.tag_counts_on(:tags).order(created_at: :desc)
+    if @tag = params[:tag]
+      # タグに紐付く投稿 　tagged_with 絞り込み検索するメソッド
+      @post = Post.tagged_with(params[:tag])
+    end
   end
 
   def search
