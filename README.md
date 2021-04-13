@@ -1,24 +1,31 @@
-# README
+# とっとっとりっぷ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+長崎へ観光に来る方へ本当におすすめな場所を紹介します。
+また、長崎県民同士でおすすめ場所を投稿・共有し、地元の方もまだ知らない穴場スポットが知れるかも…
 
-Things you may want to cover:
+### サイトテーマ
+投稿ができる、長崎の観光サイト
 
-* Ruby version
+### テーマを選んだ理由
+地元長崎へ来た人へいい思い出を作ってもらいたい。
+更に、長崎県民同士でおすすめスポットの共有し、この不況化を乗り越えるきっかけになれば良いと思い、このサイトを作ることにした。
 
-* System dependencies
+### ターゲットユーザ
+- 長崎への旅行客
+- 長崎県民
 
-* Configuration
+### 主な利用シーン
+- 長崎への旅行客に向けておすすめな観光地の紹介
+- 長崎県民同士で穴場スポットの共有
 
-* Database creation
+## 設計書
+- 機能一覧
+https://docs.google.com/spreadsheets/d/1M0ayLuzaJH9-L1CWsjIc-V55PvBQQcnE88ieeB1jwlI/edit?usp=sharing
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9

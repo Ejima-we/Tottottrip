@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>コメント編集</h1>
+
+  <table class="table">
+    <%= form_with(model:[@post, @comment]) do |f| %>
+    <tr>
+      <td><%= @comment.user.nickname %></td>
+      <td><%= f.text_area :comment, rows:"5", class:"col-8", id: "text_area" %></td>
+      <td>
+        <%= f.submit "編集", class:"btn btn-success" %></br>
+        <%= link_to "削除", post_comment_path(@comment.post_id, @comment.id), method: :delete, class:"btn btn-danger mt-3" %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
