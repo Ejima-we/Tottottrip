@@ -15,8 +15,8 @@ class Users::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.order(create_at: :desc)
-    @posts = @posts_all.page(params[:page]).per(10)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true)
   end
 
   def rank
@@ -59,14 +59,20 @@ class Users::PostsController < ApplicationController
     end
   end
 
-  def search
+  def tag_search
     selection = params[:keyword]
     @posts = Post.sort(selection)
   end
+
+  # def search
+  #   @q = Post.ransack(params[:id])
+  #   @posts = @q.result.includes(distinct: true)
+  # end
 
   private
 
   def post_params
     params.require(:post).permit(:user_id, :genre_id, :title, :body, :image, :price, :address, :tag_list)
   end
+
 end
