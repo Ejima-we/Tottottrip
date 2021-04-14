@@ -20,7 +20,7 @@ class Users::PostsController < ApplicationController
   end
 
   def rank
-    @all_ranks = Post.find(Favorite.group(:post_id).order("count(post_id)desc").limit(3).pluck(:post_id))
+    @all_ranks = Post.find(Favorite.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))
   end
 
   def show
@@ -64,10 +64,9 @@ class Users::PostsController < ApplicationController
     @posts = Post.sort(selection)
   end
 
-  # def search
-  #   @q = Post.ransack(params[:id])
-  #   @posts = @q.result.includes(distinct: true)
-  # end
+  def genre_search
+    
+  end
 
   private
 

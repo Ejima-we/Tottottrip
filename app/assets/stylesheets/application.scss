@@ -25,7 +25,11 @@
 header {
   height: 70px;
   background-color: #9dd3a8;
-  padding-left: 20px;
+}
+
+.header-logo {
+  width: 200px;
+  margin: 0 auto;
 }
 
 .container {
@@ -171,10 +175,16 @@ header {
 main {
   background-color: #f4f0e6;
 }
+// -----------topページ-----------------
+.top {
 
-h1 {
-  font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
 }
+
+.top-visual {
+  height: 600px;
+  background-color: blue;
+}
+
 .box-dotted-line {
   padding: 0.5em 1em;
   background: #f0f7ff;

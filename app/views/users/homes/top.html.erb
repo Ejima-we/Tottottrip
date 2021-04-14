@@ -1,1 +1,28 @@
-<h1>top</h1>
+<div class="top">
+  <div class="top-visual">
+    <h1>スライドショー</h1>
+  </div>
+  <div class="top-genre">
+    <% @genres.each do |genre| %>
+      <%= link_to posts_path(genre_id: genre.id) do %>
+        <p><%= genre.name %>はこちら</p>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="top-rank">
+    <h3>人気投稿</h3>
+    <div class="top-rank-posts">
+      <% @posts_rank.each.with_index(1) do |post, i| %>
+      <h6>第<%= i %>位</h6>
+        <div class="top-rank-post-image">
+        <%= link_to post_path(post.id) do %>
+          <%= attachment_image_tag post, :image, :fill, 300, 250, fallback: "no_image.png" %>
+        <% end %>
+      </div>
+      <div class="top-rank-pots-title">
+        <h5><%= post.title %></h5>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
