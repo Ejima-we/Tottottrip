@@ -22,9 +22,13 @@
   padding: 0;
 }
 
+ul {
+  list-style: none;
+}
+
 header {
   height: 70px;
-  background-color: #9dd3a8;
+  background-color: #99ddcc;
 }
 
 .header-logo {
@@ -172,17 +176,70 @@ header {
   transform: scale(50);
 }
 
+
+// -----------footer-------------------
+footer {
+  height: 200px;
+  border-top: 1px solid #ccc;
+  background-color: #9dd3a8;
+}
+.footer {
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo {
+
+}
+
+.footer-list {
+  display: inline-block;
+  padding: 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-item: center;
+}
+
+.footer-list li {
+  margin: 0 10px;
+}
+
 main {
-  background-color: #f4f0e6;
+  background-color: #f6f6f6;
+  padding: 0 50px 30px;
+
 }
 // -----------topページ-----------------
-.top {
-
+.top h3 {
+  text-align: center;
 }
 
 .top-visual {
   height: 600px;
   background-color: blue;
+}
+
+.top-genres {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.top-genre {
+  background-color: #bad7df;
+  color: white;
+  font-size: 20px;
+}
+
+.top-rank-posts, .top-new-posts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .box-dotted-line {
