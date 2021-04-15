@@ -271,6 +271,18 @@ main {
   border: dashed 2px #5b8bd0;/*点線*/
 }
 
+// ----------------投稿詳細画面--------------------
+.comment-form-btn {
+  background-color: #bad7df;
+  color: #fff;
+  width: 300px;
+  cursor: pointer;
+}
+
+.comment-form {
+  display: none;
+}
+
 .post {
   display: flex;
   flex-wrap: wrap;

@@ -8,8 +8,10 @@
   </div>
   <div class="row mt-5">
     <h2><%= @post.title %></h2>
+    <!--signinしている場合のみいいね可能-->
     <% if user_signed_in? %>
       <div class="favorites-btn-<%= @post.id %>">
+        <!--いいね機能の部分テンプレート-->
         <%= render partial: "users/favorites/favorites-btn", locals: { post: @post} %>
       </div>
     <% else %>
@@ -17,9 +19,10 @@
     <% end %>
   </div>
   <% if @tags.present? %>
-        <% @tags.each do |tag| %>
-          <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_tags_path(tag: tag.name) %>
-        <% end %>
+  <!--投稿についているタグを表示-->
+    <% @tags.each do |tag| %>
+      <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_tags_path(tag: tag.name) %>
+    <% end %>
   <% end %>
   <table class="table table-bordered row mx-auto">
     <tr>
@@ -35,17 +38,23 @@
       <td><%= @post.address %></td>
     </tr>
   </table>
+  <!--signinしている場合のみ投稿編集可能-->
     <% if user_signed_in? %>
       <% if current_user.id == @post.user_id %>
         <%= link_to "投稿を編集する", edit_post_path(@post.id), class:"btn btn-success", data: {"turbolinks" => false} %>
       <% end %>
+    <% end %>
     <p><%= @post.user.name %>  <%= @post.created_at.strftime("%Y/%m/%d") %></p>
-      <div class="comments mt-5">
-        <h4>コメント入力フォーム</h4></br>
-      <%= render partial: "users/comments/comments-form", locals: { post: @post, comment: @comment } %>
+    <!--signinしている場合のみフォーム表示-->
+    <% if user_signed_in? %>
+      <h4 class="comment-form-btn">コメント入力フォーム　<i class="fas fa-chevron-circle-down"></i></h4>
+        <!--コメントフォームの部分テンプレート-->
+      <div class="comment-form">
+        <%= render partial: "users/comments/comments-form", locals: { post: @post, comment: @comment } %>
       </div>
     <% end %>
   <div class="comment-index">
+    <!--コメント一覧の部分テンプレート-->
     <%= render partial: "users/comments/comments-index", locals: { post: @post } %>
   </div>
 </div>

@@ -9,6 +9,9 @@
           <%= comment.comment %>
         </td>
         <td>
+          <%= comment.created_at.strftime("%Y/%m/%d") %>
+        </td>
+        <td>
           <% if current_user.id == comment.user_id %>
             <%= link_to "削除", post_comment_path(comment.post_id, comment.id), class:"btn btn-info", method: :delete, remote: true %>
           <% end %>
