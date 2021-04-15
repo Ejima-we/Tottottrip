@@ -318,10 +318,30 @@ main {
   text-align: center;
 }
 
-.slider img {
+.top-visual-slick {
+  height: 800px;
+}
+
+.slick-track {
+  height: 800px;
+}
+
+.top-visual-content {
+  height: 100%;
   width: 100%;
-  height: 50vw;
-  object-fit: cover;
+  background-size: cover;
+}
+
+.slick-next:before {
+  color: #000;
+}
+
+.image-1 {
+  background-image: image-url("nagasaki.jpeg");
+}
+
+.image-2 {
+  background-image: image-url("21_HBD_Kirby_1920_1080.jpeg");
 }
 
 .top-genres {

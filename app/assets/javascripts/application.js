@@ -23,11 +23,16 @@
 //= require_tree .
 
 
-$(document).ready(function(){
+$(document).on("turbolinks:load",function(){
   $(".openbtn").click(function() { //ボタンをクリック
     $(this).toggleClass('active'); //classを付与↓
     $("#g-nav").toggleClass('panelactive');
     $(".circle-bg").toggleClass('circleactive');
+  });
+  $("#g-nav a").click(function() { //ナビゲーションリンクをクリック
+    $(".openbtn").removeClass('active'); //classを付与↓
+    $("#g-nav").removeClass('panelactive');
+    $(".circle-bg").removeClass('circleactive');
   });
   //スクロールした際の動きを関数でまとめる
 function PageTopAnime() {
@@ -66,24 +71,17 @@ $('#page-top').click(function () {
         });
   }
     return false;//リンク自体の無効化
-});
-});
-document.addEventListener("turbolinks:load",function(){
-  $("#g-nav a").click(function() { //ナビゲーションリンクをクリック
-    $(".openbtn").removeClass('active'); //classを付与↓
-    $("#g-nav").removeClass('panelactive');
-    $(".circle-bg").removeClass('circleactive');
   });
-});
-$(document).ready(function(){
+
   $(function() {
     $('.top-visual-slick').slick({
-      doto: true
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      speed: 400,
+      fade: true,
     });
   });
-});
-
-jQuery(function ($) {
   $('.comment-form-btn').on('click', function () {
     // クリックで次にあるコンテンツを開閉
     $(this).next().slideToggle(200);
@@ -91,3 +89,14 @@ jQuery(function ($) {
     $(this).toggleClass('open', 200);
   });
 });
+// document.on("turbolinks:load",function(){
+
+// });
+
+// $(document).ready(function(){
+
+// });
+
+// jQuery(function ($) {
+
+// });
