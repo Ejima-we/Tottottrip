@@ -21,17 +21,26 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
 $(document).ready(function(){
   $(".openbtn").click(function() { //ボタンをクリック
     $(this).toggleClass('active'); //classを付与↓
     $("#g-nav").toggleClass('panelactive');
     $(".circle-bg").toggleClass('circleactive');
   });
-
+});
+document.addEventListener("turbolinks:load",function(){
   $("#g-nav a").click(function() { //ナビゲーションリンクをクリック
     $(".openbtn").removeClass('active'); //classを付与↓
     $("#g-nav").removeClass('panelactive');
     $(".circle-bg").removeClass('circleactive');
   });
 });
-
+$(document).ready(function(){
+  $(function() {
+    $('.top-visual-slick').slick({
+      data: true
+    });
+  });
+});

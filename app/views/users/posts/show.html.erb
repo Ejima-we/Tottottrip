@@ -8,29 +8,19 @@
   </div>
   <div class="row mt-5">
     <h2><%= @post.title %></h2>
-      <% if user_signed_in? %>
-        <% if @post.favorited_by?(current_user) %>
-          <p>
-            <%= link_to post_favorites_path(@post), method: :delete do %>
-              <i class="fas fa-heart"></i> <%= @post.favorites.count %>いいね
-            <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to post_favorites_path(@post), method: :post do %>
-              <i class="far fa-heart"></i> <%= @post.favorites.count %>いいね
-            <% end %>
-          </p>
-        <% end %>
-      <% else %>
+    <% if user_signed_in? %>
+      <div class="favorites-btn-<%= @post.id %>">
+        <%= render partial: "users/favorites/favorites-btn", locals: { post: @post} %>
+      </div>
+    <% else %>
         <p class="likes"><%= @post.favorites.count %><i class="fas fa-heart"></i></p>
-      <% end %>
-    </div>
-    <% if @tags.present? %>
-          <% @tags.each do |tag| %>
-            <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_tags_path(tag: tag.name) %>
-          <% end %>
     <% end %>
+  </div>
+  <% if @tags.present? %>
+        <% @tags.each do |tag| %>
+          <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_tags_path(tag: tag.name) %>
+        <% end %>
+  <% end %>
   <table class="table table-bordered row mx-auto">
     <tr>
       <td class="table-active">詳細</td>
