@@ -42,31 +42,10 @@
     <p><%= @post.user.name %>  <%= @post.created_at.strftime("%Y/%m/%d") %></p>
       <div class="comments mt-5">
         <h4>コメント入力フォーム</h4></br>
-        <%= form_with(model:[@post, @comment]) do |f| %>
-          <%= f.text_area :comment, rows:"5", class:"col-8", id: "text_area" %></br>
-          <%= f.submit "送信する" %>
-        <% end %>
+      <%= render partial: "users/comments/comments-form", locals: { post: @post, comment: @comment } %>
       </div>
     <% end %>
-  <div class="row mt-3">
-    <table class="table">
-      <% @post.comments.each do |comment| %>
-        <div class="comment_<%= comment.id %>">
-          <tr>
-            <td>
-              <%= comment.user.nickname %>
-            </td>
-            <td>
-              <%= comment.comment %>
-            </td>
-            <td>
-              <% if current_user.id == comment.user_id %>
-                <%= link_to "編集", edit_post_comment_path(comment.post_id, comment.id), class:"btn btn-info", data: {"turbolinks" => false} %>
-              <% end %>
-            </td>
-          </tr>
-        </div>
-      <% end %>
-    </table>
+  <div class="comment-index">
+    <%= render partial: "users/comments/comments-index", locals: { post: @post } %>
   </div>
 </div>
