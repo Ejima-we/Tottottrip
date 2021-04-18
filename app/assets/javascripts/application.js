@@ -66,7 +66,7 @@ $('#page-top').click(function () {
     $(this).addClass('floatAnime');//クリックしたらfloatAnimeというクラス名が付与
         $('body,html').animate({
             scrollTop: 0
-        }, 1300,function(){//スクロールの速さ。数字が大きくなるほど遅くなる
+        }, 1000,function(){//スクロールの速さ。数字が大きくなるほど遅くなる
             $('#page-top').removeClass('floatAnime');//上までスクロールしたらfloatAnimeというクラス名を除く
         });
   }
@@ -89,14 +89,3 @@ $('#page-top').click(function () {
     $(this).toggleClass('open', 200);
   });
 });
-// document.on("turbolinks:load",function(){
-
-// });
-
-// $(document).ready(function(){
-
-// });
-
-// jQuery(function ($) {
-
-// });

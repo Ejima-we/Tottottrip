@@ -8,7 +8,7 @@ class Users::SessionsController < Devise::SessionsController
     sign_in user
     redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
   end
-  
+
   # GET /resource/sign_in
   # def new
   #   super
@@ -26,7 +26,7 @@ class Users::SessionsController < Devise::SessionsController
 
   protected
 
-  def refect_user
+  def reject_user
     @user = User.find_by(email: params[:user][:email])
     if @user
       if (@user.valid_password?(params[:user][:password])) && (@user.active_for_authentication? == false)
