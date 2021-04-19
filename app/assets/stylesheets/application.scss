@@ -309,7 +309,7 @@ footer {
 // --------------main--------------------------
 main {
   background-color: #f6f6f6;
-  padding: 0 50px 30px;
+  padding: 30px 50px 30px;
 }
 
 // -----------topページ------------------------
@@ -318,17 +318,18 @@ main {
 }
 
 .top-visual-slick {
-  height: 800px;
+  height: 700px;
 }
 
 .slick-track {
-  height: 800px;
+  height: 700px;
 }
 
 .top-visual-content {
   height: 100%;
   width: 100%;
   background-size: cover;
+  background-position: center;
 }
 
 .slick-next:before {
@@ -345,6 +346,10 @@ main {
 
 .image-3 {
   background-image: image-url("nagasaki4.jpeg");
+}
+
+.image-4 {
+  background-image: image-url("nagasaki5.jpeg");
 }
 
 .top-genres {
@@ -391,10 +396,17 @@ main {
   display: none;
 }
 
+// ---------------------投稿一覧画面---------------------------------
 .post {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin-top: 20px;
+}
+
+.posts-searches {
+  display: flex;
+  justify-content: space-around;
 }
 
 .post-content {
@@ -404,6 +416,12 @@ main {
   border: dashed 2px white;
   padding: 0.2em 0.5em;
   color: #454545;
+}
+
+.post-genre-like {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5px;
 }
 
 .likes {

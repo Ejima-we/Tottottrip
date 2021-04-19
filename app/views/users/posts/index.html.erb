@@ -1,13 +1,17 @@
-<div class="container">
-  <h1><%= @header %></h1>
-  <%= search_form_for @q do |f| %>
-    検索
-    <%= f.search_field :title_cont %>
-    <%= f.submit "検索" %>
-  <% end %>
+<div class="posts-index">
+  <div class="posts-searches">
+    <div class="sort">
+      <%= render "search_form", post: @post %>
+    </div>
+    <div class="posts-search">
+      <%= search_form_for @q do |f| %>
+        検索
+        <%= f.search_field :title_cont %>
+        <%= f.submit " 検索 " %>
+      <% end %>
+    </div>
+  </div>
 
-  <%= render "search_form", post: @post %>
-  
+
   <%= render "search_result", posts: @posts %>
-
 </div>

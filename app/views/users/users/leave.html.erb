@@ -1,13 +1,15 @@
-<div>
-  <div>
-  <h5>本当に退会しますか？</h5>
-  </div>
-  <div>
-    <div>
-      <%= link_to "退会しない", mypage_path, class:"btn btn-info" %>
+<div class="container">
+  <div class="my-5 box-dotted-line">
+    <div class="mt-5 row">
+      <h3 class="mx-auto"><i class="fas fa-exclamation-triangle"></i>本当に退会しますか？</h5>
     </div>
-    <div>
-      <%= link_to "退会する", users_withdraw_path, method: :patch, class:"btn btn-danger" %>
+    <div class="my-5 row">
+      <div class="col-md-6 mx-auto">
+        <%= link_to "　退会しない　", mypage_path, class:"btn btn-info mx-auto" %>
+      </div>
+      <div class="col-md-6 mx-auto">
+        <%= link_to "　退会する　", users_withdraw_path, method: :patch, class:"btn btn-danger" %>
+      </div>
     </div>
   </div>
 </div>

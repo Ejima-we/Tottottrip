@@ -1,6 +1,7 @@
 <div class="container">
   <h1>マイページ</h1>
   <div class="row">
+    <div class="col-md-8">
     <table class="table table-borderless">
       <tr>
         <td>名前</td>
@@ -16,6 +17,7 @@
       </tr>
     </table>
     <%= link_to "お気に入り", user_favorites_path(@user.id), class:"btn btn-primary" %>
-    <%= link_to "会員情報編集", edit_information_path, class:"btn btn-info" %>
+    <%= link_to "会員情報編集", edit_information_path, class:"ml-3 btn btn-info" %>
+    </div>
   </div>
 </div>
