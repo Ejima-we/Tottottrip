@@ -1,0 +1,13 @@
+<div>
+  <div>
+  <h5>本当に退会しますか？</h5>
+  </div>
+  <div>
+    <div>
+      <%= link_to "退会しない", mypage_path, class:"btn btn-info" %>
+    </div>
+    <div>
+      <%= link_to "退会する", users_withdraw_path, method: :patch, class:"btn btn-danger" %>
+    </div>
+  </div>
+</div>
