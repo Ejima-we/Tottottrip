@@ -1,0 +1,26 @@
+<table class="table">
+  <% post.comments.each do |comment| %>
+    <div class="comment_<%= comment.id %>">
+      <tr>
+        <td>
+          <%= comment.user.nickname %>
+        </td>
+        <td>
+          <%= comment.comment %>
+        </td>
+        <td>
+          <%= comment.created_at.strftime("%Y/%m/%d") %>
+        </td>
+        <td>
+          <% if user_signed_in? %>
+            <% if current_user.id == comment.user_id %>
+              <%= link_to "削除", post_comment_path(comment.post_id, comment.id), class:"btn btn-info", method: :delete, remote: true %>
+            <% end %>
+          <% elsif admin_signed_in? %>
+            <%= link_to "削除", post_comment_path(comment.post_id, comment.id), class:"btn btn-info", method: :delete, remote: true %>
+          <% end %>
+        </td>
+      </tr>
+    </div>
+  <% end %>
+</table>
