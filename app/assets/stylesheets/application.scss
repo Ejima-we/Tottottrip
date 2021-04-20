@@ -161,7 +161,7 @@ header {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: #999;
+  background: #99ddcc;
   opacity: 0.9;
   // 丸のスタート位置
   // scaleを最初は0に
@@ -183,7 +183,7 @@ nav ul {
 nav ul li a {
   display: inline-block;
   text-decoration: none;
-  color: #000;
+  color: #fff;
   padding: 10px;
 }
 
@@ -191,7 +191,7 @@ nav ul li a {
 #page-top {
   position: fixed;
   right: 10px;
-  bottom:30px;
+  bottom: 30px;
   z-index: 2;
     // はじめは非表示
   opacity: 0;
@@ -265,9 +265,9 @@ nav ul li a {
 
 // Page Topと書かれたテキストの位置
 #page-top span{
-    position: absolute;
-    bottom: -20px;
-    right: 20px;
+  position: absolute;
+  bottom: -20px;
+  right: 20px;
   color: #666;
 }
 
@@ -275,7 +275,7 @@ nav ul li a {
 footer {
   height: 200px;
   border-top: 1px solid #ccc;
-  background-color: #9dd3a8;
+  background-color: #99ddcc;
 }
 .footer {
   padding: 0 20px;
@@ -305,11 +305,54 @@ footer {
 
 .footer-list a {
   color: #fff;
+  text-decoration: none;
 }
 // --------------main--------------------------
 main {
   background-color: #f6f6f6;
+  color: #4d4545;
+}
+
+td {
+  color: #4d4545;
+}
+
+.main {
   padding: 30px 50px 30px;
+}
+
+.btn {
+  color: #fff;
+}
+
+.btn:hover {
+  color: #fff;
+}
+
+.btn-blue {
+  background-color: #748cf8;
+  opacity: 0.8;
+}
+
+.btn-blue:hover {
+  opacity: 1;
+}
+
+.btn-green {
+  background-color: #73f4b4;
+  opacity: 0.8;
+}
+
+.btn-green:hover {
+  opacity: 1;
+}
+
+.btn-red {
+  background-color: #f67775;
+}
+
+.btn-yellow {
+  background-color: #f7dc9d;
 }
 
 // -----------topページ------------------------
@@ -318,11 +361,13 @@ main {
 }
 
 .top-visual-slick {
-  height: 700px;
+  width: 100%;
+  height: 45vw;
 }
 
 .slick-track {
-  height: 700px;
+  width: 100%;
+  height: 45vw;
 }
 
 .top-visual-content {
@@ -337,19 +382,61 @@ main {
 }
 
 .image-1 {
-  background-image: image-url("nagasaki.jpeg");
+  background-image: image-url("nagasaki1.jpg");
 }
 
 .image-2 {
-  background-image: image-url("nagasaki3.jpeg");
+  background-image: image-url("nagasaki2.jpg");
 }
 
 .image-3 {
-  background-image: image-url("nagasaki4.jpeg");
+  background-image: image-url("nagasaki3.jpg");
 }
 
 .image-4 {
-  background-image: image-url("nagasaki5.jpeg");
+  background-image: image-url("nagasaki4.jpg");
+}
+
+.about-image {
+  width: 70%;
+  height: 20vw;
+  background-size: cover;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.about-1 {
+  background-image: image-url("about1.png");
+}
+
+.about-2 {
+  background-image: image-url("about2.png");
+}
+
+.about-3 {
+  background-image: image-url("about3.png");
+}
+
+.about-text-image {
+  display: none;
+  width: 70%;
+  background-size: cover;
+  margin: 0 auto;
+}
+
+.about-text-1 {
+  background-image: image-url("about-text1.png");
+  height: 18vw;
+}
+
+.about-text-2 {
+  background-image: image-url("about-text2.png");
+  height: 18vw;
+}
+
+.about-text-3 {
+  background-image: image-url("about-text3.png");
+  height: 16vw;
 }
 
 .top-genres {
@@ -360,9 +447,10 @@ main {
 }
 
 .top-genre {
+  padding: 0 20px;
   background-color: #bad7df;
   color: white;
-  font-size: 20px;
+  font-size: 30px;
   opacity: 0.8;
 }
 
@@ -384,12 +472,42 @@ main {
   border: dashed 2px #5b8bd0;/*点線*/
 }
 
-// ----------------投稿詳細画面--------------------
+// ----------------投稿詳細画面-------------------------------------
+.post-show-image {
+  margin: 20px 0;
+}
+
+.post-show-image img {
+  margin: 0 auto;
+  width: 80%;
+  height: 40vw;
+}
+
+.post-time-likes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.favorites img {
+  width: 75px;
+  height: 22px;
+}
+
+.favorites a {
+  text-decoration: none;
+  color: #4d4545;
+}
+
+.table-border {
+  border: solid 1px #dcdcdc;
+}
+
 .comment-form-btn {
   background-color: #bad7df;
   color: #fff;
-  width: 300px;
+  width: 330px;
   cursor: pointer;
+  border-radius: 50px;
 }
 
 .comment-form {
@@ -406,7 +524,7 @@ main {
 
 .posts-searches {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .post-content {
@@ -426,4 +544,9 @@ main {
 
 .likes {
   color: red;
+}
+
+.likes img {
+  width: 75px;
+  height: 22px;
 }

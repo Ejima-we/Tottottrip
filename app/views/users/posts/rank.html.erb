@@ -1,5 +1,16 @@
 <div class="posts-rank">
   <h1>ランキング</h1>
+  <div class="genre-rank">
+    <% @genres.each do |genre| %>
+      <div class="top-genres">
+        <%= link_to posts_ranks_path(genre_id: genre.id) do %>
+          <div class="top-genre btn">
+            <%= genre.name %>のランキング
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
   <div class="post">
     <% @all_ranks.each.with_index(1) do |post, i| %>
      <div class="post-content">

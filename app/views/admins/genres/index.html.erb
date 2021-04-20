@@ -20,7 +20,7 @@
       <% @genres.each do |genre| %>
         <tr>
           <td><%= genre.name %></td>
-          <td><%= link_to "編集", edit_admins_genre_path(genre.id), class:"btn btn-info", data: {"turbolinks" => false} %></td>
+          <td><%= link_to "編集", edit_admins_genre_path(genre.id), class:"btn btn-info" %></td>
         </tr>
       <% end %>
     </table>

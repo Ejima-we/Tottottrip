@@ -15,12 +15,26 @@ class Users::PostsController < ApplicationController
   end
 
   def index
-    @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @q = Post.ransack(params[:q])
+      @posts_all = @genre.posts.order(created_at: "DESC").page(params[:page]).per(1)
+    else
+      @q = Post.ransack(params[:q])
+      @posts = @q.result(distinct: true)
+      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(1)
+    end
   end
 
   def rank
-    @all_ranks = Post.find(Favorite.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))
+    @genres = Genre.all
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @posts = @genre.posts.all
+      @all_ranks = @posts.find(Favorite.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))
+    else
+      @all_ranks = Post.find(Favorite.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))
+    end
   end
 
   def show
@@ -55,17 +69,18 @@ class Users::PostsController < ApplicationController
     @tags = Post.tag_counts_on(:tags).order(created_at: :desc)
     if @tag = params[:tag]
       # タグに紐付く投稿 　tagged_with 絞り込み検索するメソッド
-      @post = Post.tagged_with(params[:tag])
+      @posts = Post.tagged_with(params[:tag])
+      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(1)
     end
   end
 
-  def tag_search
-    selection = params[:keyword]
-    @posts = Post.sort(selection)
-  end
+  # def tag_search
+  #   selection = params[:keyword]
+  #   @posts = Post.sort(selection)
+  # end
 
   def genre_search
-    
+
   end
 
   private

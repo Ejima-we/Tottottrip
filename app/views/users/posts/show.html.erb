@@ -1,22 +1,24 @@
-<div class="container">
-
-<h1>投稿詳細</h1>
-  <div class="row mt-5">
-    <div class="mx-auto">
-      <%= attachment_image_tag @post, :image, :fill, 800, 500, fallback: "no_image.jpg" %>
-    </div>
+<div class="main">
+  <div class="post-show-image">
+    <%= attachment_image_tag @post, :image %>
   </div>
-  <div class="row mt-5">
+  <div class="post-details">
     <h2><%= @post.title %></h2>
     <!--signinしている場合のみいいね可能-->
+    <div class="post-time-likes">
+    <p>
+      <%= @post.user.name %>  <%= @post.created_at.strftime("%Y/%m/%d") %></br>
+      <%= @post.genre.name %>
+    </p>
     <% if user_signed_in? %>
       <div class="favorites-btn-<%= @post.id %>">
         <!--いいね機能の部分テンプレート-->
         <%= render "users/favorites/favorites-btn", { post: @post} %>
       </div>
     <% else %>
-        <p class="likes"><%= @post.favorites.count %><i class="fas fa-heart"></i></p>
+        <p class="likes">いいね<i class="fas fa-heart"></i><%= @post.favorites.count %></p>
     <% end %>
+    </div>
   </div>
   <% if @tags.present? %>
   <!--投稿についているタグを表示-->
@@ -24,32 +26,37 @@
       <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_tags_path(tag: tag.name) %>
     <% end %>
   <% end %>
-  <table class="table table-bordered row mx-auto">
+  <table class="table table-border">
+    <% if @post.body.present? %>
     <tr>
       <td class="table-active">詳細</td>
       <td><%= @post.body %></td>
     </tr>
+    <% end %>
+    <% if @post.price.present? %>
     <tr>
       <td class="table-active">価格</td>
       <td><%= @post.price %></td>
     </tr>
+    <% end %>
+    <% if @post.address.present? %>
     <tr>
       <td class="table-active">所在地</td>
       <td><%= @post.address %></td>
     </tr>
+    <% end %>
   </table>
   <!--signinしている場合のみ投稿編集可能-->
     <% if user_signed_in? %>
       <% if current_user.id == @post.user_id %>
-        <%= link_to "投稿を編集する", edit_post_path(@post.id), class:"btn btn-success", data: {"turbolinks" => false} %>
+        <%= link_to "投稿を編集する", edit_post_path(@post.id), class:"btn btn-success" %>
       <% end %>
     <% elsif admin_signed_in? %>
-      <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class:"btn btn-danger", data: {"turbolinks" => false} %>
+      <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class:"btn btn-danger" %>
     <% end %>
-    <p><%= @post.user.name %>  <%= @post.created_at.strftime("%Y/%m/%d") %></p>
     <!--signinしている場合のみフォーム表示-->
     <% if user_signed_in? %>
-      <h4 class="comment-form-btn">コメント入力フォーム　<i class="fas fa-chevron-circle-down"></i></h4>
+      <h4 class="comment-form-btn">　コメント入力フォーム　<i class="fas fa-chevron-circle-down"></i></h4>
         <!--コメントフォームの部分テンプレート-->
       <div class="comment-form">
         <%= render partial: "users/comments/comments-form", locals: { post: @post, comment: @comment } %>
