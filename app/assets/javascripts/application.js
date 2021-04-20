@@ -88,4 +88,10 @@ $('#page-top').click(function () {
     // 矢印の向きを変更
     $(this).toggleClass('open', 200);
   });
+  $('.about-image').on('click', function () {
+    // クリックで次にあるコンテンツを開閉
+    $(this).next().slideToggle(200);
+    // 矢印の向きを変更
+    $(this).toggleClass('open', 200);
+  });
 });
