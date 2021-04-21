@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   scope module: :users do
     root "homes#top"
-    get "homes/about" => "homes#about", as: "about"
+    get "inquiries" => "homes#inquiries", as: "inquiries"
+    post "inquiries" => "homes#mail"
+    get "done" => "homes#done", as: "done"
     get "users/mypage" => "users#show", as: "mypage"
     get "users/leave" => "users#leave"
     patch "users/withdraw" => "users#withdraw"

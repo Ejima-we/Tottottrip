@@ -73,15 +73,6 @@ class Users::PostsController < ApplicationController
     end
   end
 
-  # def tag_search
-  #   selection = params[:keyword]
-  #   @posts = Post.sort(selection)
-  # end
-
-  def genre_search
-
-  end
-
   private
 
   def post_params

@@ -299,10 +299,6 @@ footer {
   justify-content: space-between;
 }
 
-.footer-logo {
-
-}
-
 .footer-list {
   display: inline-block;
   padding: 0 10px;
@@ -316,7 +312,11 @@ footer {
   margin: 0 10px;
 }
 
-.footer-list a {
+.footer-logo a {
+  font-size: 20px;
+}
+
+.footer a {
   color: #fff;
   text-decoration: none;
 }
@@ -570,6 +570,45 @@ td {
   background:#333;
 }
 
+// ---------------お問い合わせ画面----------------------------------
+
+.contact-head {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-form {
+  width: 60%;
+  padding: 30px 0;
+  margin: 0 auto;
+}
+
+.contact-text {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.contact-text h6 {
+  margin-top: 20px;
+}
+
+.contact-btn {
+  width: 80%;
+  margin: 0 auto;
+}
+
+// ------------------お問い合わせ完了画面------------------------------
+.done-text {
+  text-align: center;
+}
+
+.done-image {
+  background-image: image-url("thanks.png");
+  background-size: cover;
+  width: 45%;
+  height: 40vw;
+  margin: 0 auto;
+}
 
 // ----------------投稿詳細画面-------------------------------------
 .post-show-image {
@@ -602,6 +641,7 @@ td {
 }
 
 .comment-form-btn {
+  margin-top: 30px;
   background-color: #bad7df;
   color: #fff;
   width: 330px;
