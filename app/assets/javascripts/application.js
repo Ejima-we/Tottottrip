@@ -23,6 +23,8 @@
 //= require_tree .
 
 
+
+
 $(document).on("turbolinks:load",function(){
   $(".openbtn").click(function() { //ボタンをクリック
     $(this).toggleClass('active'); //classを付与↓
@@ -94,4 +96,113 @@ $('#page-top').click(function () {
     // 矢印の向きを変更
     $(this).toggleClass('open', 200);
   });
+
+  //無限読み込みInfiniteScroll
+// 	$('.article-list').infinitescroll({	//無限読み込みをさせたい要素を囲う親のクラス名を指定
+// 		navSelector  : ".navigation",//次のページを読み込むリンクを囲んでいるクラス名を指定
+// 		nextSelector : ".navigation a",//次のページにリンクする要素を指定
+// 		itemSelector : ".article-list li",//無限スクロールで表示をさせたい要素を指定
+// 		maxPage : 5,///読み込む全体のページ数。入れないと連番でURLが読まれて404エラーが出る
+// 		animate: true, //アニメーション処理を行う
+// 			loading: {
+// 			finishedMsg: "全ての記事が読み込まれました", //全ての要素が読み込まれた後の終了メッセージ
+// 			msgText: "読み込み中", //ローディング中の表示テキスト
+// 			img: 'svg/loading.svg', //ローディング中の画像を指定
+// 		},
+// 	});
+
+	$('.article-list').hide().delay(100).fadeIn(900);//0.9秒かけてフェードイン
+
+   //任意のタブにURLからリンクするための設定
+  function GethashID (hashIDName){
+  	if(hashIDName){
+  		//タブ設定
+  		$('.tab li').find('a').each(function() { //タブ内のaタグ全てを取得
+  			var idName = $(this).attr('href'); //タブ内のaタグのリンク名（例）#lunchの値を取得
+  			if(idName == hashIDName){ //リンク元の指定されたURLのハッシュタグ（例）http://example.com/#lunch←この#の値とタブ内のリンク名（例）#lunchが同じかをチェック
+  				var parentElm = $(this).parent(); //タブ内のaタグの親要素（li）を取得
+  				$('.tab li').removeClass("active"); //タブ内のliについているactiveクラスを取り除き
+  				$(parentElm).addClass("active"); //リンク元の指定されたURLのハッシュタグとタブ内のリンク名が同じであれば、liにactiveクラスを追加
+  				//表示させるエリア設定
+  				$(".post-area").removeClass("is-active"); //もともとついているis-activeクラスを取り除き
+  				$(hashIDName).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加
+  			}
+  		});
+  	}
+  }
+
+  //タブをクリックしたら
+  $('.tab a').on('click', function() {
+  	var idName = $(this).attr('href'); //タブ内のリンク名を取得
+  	GethashID (idName);//設定したタブの読み込みと
+  	return false;//aタグを無効にする
+  });
+
+
+  // 上記の動きをページが読み込まれたらすぐに動かす
+  $(window).on('load', function () {
+      $('.tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
+      $('.post-area:first-of-type').addClass("is-active"); //最初の.areaにis-activeクラスを追加
+  	var hashName = location.hash; //リンク元の指定されたURLのハッシュタグを取得
+  	GethashID (hashName);//設定したタブの読み込み
+  });
+
+  	$('.top-posts-slider').slick({
+		autoplay: true,//自動的に動き出すか。初期値はfalse。
+		infinite: true,//スライドをループさせるかどうか。初期値はtrue。
+		slidesToShow: 3,//スライドを画面に3枚見せる
+		slidesToScroll: 3,//1回のスクロールで3枚の写真を移動して見せる
+		prevArrow: '<div class="slick-prev"></div>',//矢印部分PreviewのHTMLを変更
+		nextArrow: '<div class="slick-next"></div>',//矢印部分NextのHTMLを変更
+		dots: true,//下部ドットナビゲーションの表示
+		responsive: [
+			{
+			breakpoint: 769,//モニターの横幅が769px以下の見せ方
+			settings: {
+				slidesToShow: 2,//スライドを画面に2枚見せる
+				slidesToScroll: 2,//1回のスクロールで2枚の写真を移動して見せる
+			}
+		},
+		{
+			breakpoint: 426,//モニターの横幅が426px以下の見せ方
+			settings: {
+				slidesToShow: 1,//スライドを画面に1枚見せる
+				slidesToScroll: 1,//1回のスクロールで1枚の写真を移動して見せる
+			}
+		}
+	]
+	});
+
+  //テキストのカウントアップ+バーの設定
+  var bar = new ProgressBar.Line(splash_text, {//id名を指定
+  	easing: 'easeInOut',//アニメーション効果linear、easeIn、easeOut、easeInOutが指定可能
+  	duration: 1000,//時間指定(1000＝1秒)
+  	strokeWidth: 0.2,//進捗ゲージの太さ
+  	color: '#555',//進捗ゲージのカラー
+  	trailWidth: 0.2,//ゲージベースの線の太さ
+  	trailColor: '#bbb',//ゲージベースの線のカラー
+  	text: {//テキストの形状を直接指定
+  		style: {//天地中央に配置
+  			position: 'absolute',
+  			left: '50%',
+  			top: '50%',
+  			padding: '0',
+  			margin: '-30px 0 0 0',//バーより上に配置
+  			transform:'translate(-50%,-50%)',
+  			'font-size':'1rem',
+  			color: '#fff',
+  		},
+  		autoStyleContainer: false //自動付与のスタイルを切る
+  	},
+  	step: function(state, bar) {
+  		bar.setText(Math.round(bar.value() * 100) + ' %'); //テキストの数値
+  	}
+  });
+
+  //アニメーションスタート
+  bar.animate(1.0, function () {//バーを描画する割合を指定します 1.0 なら100%まで描画します
+  	$("#splash").delay(500).fadeOut(800);//アニメーションが終わったら#splashエリアをフェードアウト
+  });
+
+
 });

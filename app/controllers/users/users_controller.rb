@@ -3,6 +3,8 @@ class Users::UsersController < ApplicationController
 
   def show
     @user = current_user
+    @posts = Post.where(user_id: @user.id)
+    @favorites = Favorite.where(user_id: @user.id)
   end
 
   def edit
@@ -27,12 +29,6 @@ class Users::UsersController < ApplicationController
     @user.update(is_deleted: true)
     reset_session
     redirect_to root_path
-  end
-
-  def favorite
-    @user = User.find_by(id: params[:id])
-    # userに関するデータを取得
-    @favorites = Favorite.where(user_id: @user.id)
   end
 
   private

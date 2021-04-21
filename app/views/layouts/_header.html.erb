@@ -1,3 +1,12 @@
+<div class="header-hello">
+  <% if user_signed_in? %>
+    <% if current_user.name == "guest5gbcyjsozzkdyyb6" %>
+      <p><i class="fas fa-crow"></i> ゲストユーザーとしてログイン中です</p>
+    <% else %>
+      <p><i class="fas fa-dove"></i> こんにちは、<%= current_user.nickname %>さん</p>
+    <% end %>
+  <% end %>
+</div>
 <div class="header-logo">
   <%= link_to "/" do %>
     <%= image_tag "Tottottrip_logo.png", :size => "200x70" %>
@@ -9,11 +18,17 @@
   <div id="g-nav-list">
     <ul>
       <% if user_signed_in? %>
-        <li><%= link_to "新規投稿", new_post_path %></li>
-        <li><%= link_to "投稿一覧", posts_path %></li>
-        <li><%= link_to "ランキング", posts_ranks_path %></li>
-        <li><%= link_to "マイページ", mypage_path %></li>
-        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% if current_user.name == "guest5gbcyjsozzkdyyb6" %>
+          <li><%= link_to "投稿一覧", posts_path %></li>
+          <li><%= link_to "ランキング", posts_ranks_path %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "新規投稿", new_post_path %></li>
+          <li><%= link_to "投稿一覧", posts_path %></li>
+          <li><%= link_to "ランキング", posts_ranks_path %></li>
+          <li><%= link_to "マイページ", mypage_path %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% end %>
       <% elsif admin_signed_in? %>
         <li><%= link_to "投稿一覧", admins_posts_path %></li>
         <li><%= link_to "会員一覧", admins_users_path %></li>
@@ -21,7 +36,6 @@
         <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Top", root_path %></li>
-        <li><%= link_to "About", about_path %></li>
         <li><%= link_to "投稿一覧", posts_path %></li>
         <li><%= link_to "ランキング", posts_ranks_path %></li>
         <li><%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %></li>

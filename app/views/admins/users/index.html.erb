@@ -1,7 +1,10 @@
 <div class="container">
   <h1>会員一覧</h1>
-  
+
   <div class="row">
+    <div class="col-md-5">
+      <%= link_to "　ゲストをリセット　", admins_user_path(@guest_user), method: :delete, class:"btn btn-red" %>
+    </div>
     <table class="table">
       <thead>
         <tr>
@@ -13,24 +16,31 @@
       </thead>
       <tbody>
         <% @users.each do |user| %>
-          <tr>
-            <td><%= user.id %></td>
-            <td>
-              <%= link_to edit_admins_user_path(user.id) do %>
-                <%= user.name %>
-              <% end %>
-            </td>
-            <td><%= user.email %></td>
-            <td>
-              <% if user.is_deleted %>
-                <%= "退会済み" %>
-              <% else %>
-                <%= "有効" %>
-              <% end %>
-            </td>
-          </tr>
+          <% if user.name != "guest5gbcyjsozzkdyyb6" %>
+            <tr>
+              <td><%= user.id %></td>
+              <td>
+                <%= link_to edit_admins_user_path(user.id) do %>
+                  <%= user.name %>
+                <% end %>
+              </td>
+              <td><%= user.email %></td>
+              <td>
+                <% if user.is_deleted %>
+                  <%= "退会済み" %>
+                <% else %>
+                  <%= "有効" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <%= paginate @users %>
+    </div>
   </div>
 </div>

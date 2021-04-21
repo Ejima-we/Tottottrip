@@ -32,6 +32,16 @@ header {
   background-color: #99ddcc;
 }
 
+.header-hello {
+  float: left;
+  height: 100%;
+}
+
+.header-hello p {
+  padding: 20px 40px;
+  color: #fff;
+}
+
 .header-logo {
   width: 200px;
   margin: 0 auto;
@@ -185,6 +195,7 @@ nav ul li a {
   text-decoration: none;
   color: #fff;
   padding: 10px;
+  font-size: 25px;
 }
 
 // リンクを右下に固定
@@ -242,16 +253,18 @@ nav ul li a {
   text-decoration: none;
   font-size: 0.6rem;
     // 背景画像の指定
-  background: url("frog1.png") no-repeat center;
+  background-image: image-url("frog1.png");
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 #page-top.floatAnime a{
   width: 100px;
   height: 130px;
     // 背景画像の指定
-  background: url("frog2.png") no-repeat center;
+  background-image: image-url("frog2.png");
   background-size: contain;
+  background-repeat: no-repeat;
     // アニメーションの指定
   animation: floatAnime 2s linear infinite;
   opacity: 0;
@@ -308,17 +321,19 @@ footer {
   text-decoration: none;
 }
 // --------------main--------------------------
-main {
+body {
   background-color: #f6f6f6;
   color: #4d4545;
 }
 
-td {
-  color: #4d4545;
+main {
+  background-color: #f6f6f6;
+  padding: 30px 50px 30px;
+  min-height: 600px;
 }
 
-.main {
-  padding: 30px 50px 30px;
+td {
+  color: #4d4545;
 }
 
 .btn {
@@ -356,6 +371,28 @@ td {
 }
 
 // -----------topページ------------------------
+#splash {
+  // fixedで全面に固定
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	background: #99ddcc;
+	text-align: center;
+	color: #fff;
+}
+
+// Loadingバー中央配置
+#splash_text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+    z-index: 999;
+	width: 100%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+}
+
 .top h3 {
   text-align: center;
 }
@@ -375,6 +412,7 @@ td {
   width: 100%;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 .slick-next:before {
@@ -448,16 +486,8 @@ td {
 
 .top-genre {
   padding: 0 20px;
-  background-color: #bad7df;
-  color: white;
   font-size: 30px;
   opacity: 0.8;
-}
-
-.top-genre:hover {
-  background-color: #bad7df;
-  opacity: 1;
-  color: #fff;
 }
 
 .top-rank-posts, .top-new-posts {
@@ -471,6 +501,75 @@ td {
   background: #f0f7ff;
   border: dashed 2px #5b8bd0;/*点線*/
 }
+
+.top-posts-slider {
+  width: 94%;
+  margin: 0 auto;
+}
+
+.top-posts-slider img {
+  width: 100%;
+  height: 23vw;
+}
+
+.slick-slide {
+  height: auto;
+}
+
+.top-rank-content .top-new-content {
+  height: auto;
+}
+
+.top-posts-slider .slick-slide {
+  margin: 0 10px;
+}
+
+/*戻る、次へ矢印の位置*/
+.slick-prev,.slick-next {
+  position: absolute;
+  top: 42%;
+  cursor: pointer;
+  outline: none;/*クリックをしたら出てくる枠線を消す*/
+  border-top: 2px solid #666;
+  border-right: 2px solid #666;
+  height: 15px;
+  width: 15px;
+}
+
+.slick-prev {
+  left: -1.5%;
+  transform: rotate(-135deg);
+}
+
+.slick-next {
+  right: -1.5%;
+  transform: rotate(45deg);
+}
+
+.slick-dots {
+  text-align:center;
+	margin:20px 0 0 0;
+}
+
+.slick-dots li {
+  display:inline-block;
+	margin:0 5px;
+}
+
+.slick-dots button {
+  color: transparent;
+  outline: none;
+  width:8px;
+  height:8px;
+  display:block;
+  border-radius:50%;
+  background:#ccc;
+}
+
+.slick-dots .slick-active button{
+  background:#333;
+}
+
 
 // ----------------投稿詳細画面-------------------------------------
 .post-show-image {
@@ -536,6 +635,10 @@ td {
   color: #454545;
 }
 
+.post-text {
+  padding: 10px;
+}
+
 .post-genre-like {
   display: flex;
   justify-content: space-between;
@@ -549,4 +652,79 @@ td {
 .likes img {
   width: 75px;
   height: 22px;
+}
+
+#infscr-loading {
+width: 100%;
+text-align: center;
+margin: 20px auto;
+}
+
+#infscr-loading img{
+	width: 30px;/*ローディング画像のサイズ*/
+}
+
+// ----------------ランキングページ---------------------------
+.genre-rank {
+  display: flex;
+  justify-content: space-around;
+}
+
+// -------------------マイページ------------------------------
+.user-info {
+  border-right: 1px solid #dcdcdc;
+  width: 20%;
+  float: left;
+  height: auto;
+  min-height: 600px;
+}
+
+.user-favorite-posts {
+  width: 100%;
+  min-height: 600px;
+}
+
+/*tabの形状*/
+.tab{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.tab li a{
+	display: block;
+	background: #f6f6f6;
+	margin: 0 2px;
+	padding: 10px 20px;
+	border: 1px solid #dcdcdc;
+	border-radius: 20px;
+  color: #4d4545;
+  text-decoration: none;
+}
+/*liにactiveクラスがついた時の形状*/
+.tab li.active a{
+	background: #dcdcdc;
+}
+
+/*エリアの表示非表示と形状*/
+.post-area {
+	display: none;/*はじめは非表示*/
+	opacity: 0;/*透過0*/
+	padding: 30px 20px;
+}
+
+/*areaにis-activeというクラスがついた時の形状*/
+.post-area.is-active {
+  display: flex;/*表示*/
+  animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes displayAnime{
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

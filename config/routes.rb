@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     sessions: "admins/sessions",
   }
   namespace :admins do
-    resources :users, only: [:index, :edit, :update]
+    resources :users, only: [:index, :edit, :update, :destroy]
     resources :posts, only: :index
     resources :genres, only: [:index, :edit, :create, :update, :destroy]
   end
@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     get "homes/about" => "homes#about", as: "about"
     get "users/mypage" => "users#show", as: "mypage"
     get "users/leave" => "users#leave"
-    get "users/:id/favorite" => "users#favorite", as: "user_favorites"
     patch "users/withdraw" => "users#withdraw"
     get "users/information/edit" => "users#edit", as: "edit_information"
     patch "users/information" => "users#update"

@@ -18,11 +18,11 @@ class Users::PostsController < ApplicationController
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @q = Post.ransack(params[:q])
-      @posts_all = @genre.posts.order(created_at: "DESC").page(params[:page]).per(1)
+      @posts_all = @genre.posts.order(created_at: "DESC").page(params[:page]).per(20)
     else
       @q = Post.ransack(params[:q])
       @posts = @q.result(distinct: true)
-      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(1)
+      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(20)
     end
   end
 
@@ -30,7 +30,7 @@ class Users::PostsController < ApplicationController
     @genres = Genre.all
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @posts = @genre.posts.all
+      @posts = @genre.postss.all
       @all_ranks = @posts.find(Favorite.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))
     else
       @all_ranks = Post.find(Favorite.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))

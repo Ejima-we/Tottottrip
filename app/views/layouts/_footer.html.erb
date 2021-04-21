@@ -19,7 +19,6 @@
         <li><%= link_to "Logout", destroy_admin_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Top", root_path %></li>
-        <li><%= link_to "About", about_path %></li>
         <li><%= link_to "Posts", posts_path %></li>
         <li><%= link_to "Ranking", posts_ranks_path %></li>
         <li><%= link_to "GuestLogin", users_guest_sign_in_path, method: :post %></li>
