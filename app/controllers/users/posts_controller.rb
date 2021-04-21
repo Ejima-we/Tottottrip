@@ -18,20 +18,19 @@ class Users::PostsController < ApplicationController
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @q = Post.ransack(params[:q])
-      @posts_all = @genre.posts.order(created_at: "DESC").page(params[:page]).per(1)
+      @posts_all = @genre.posts.order(created_at: "DESC").page(params[:page]).per(20)
     else
       @q = Post.ransack(params[:q])
       @posts = @q.result(distinct: true)
-      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(1)
+      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(20)
     end
   end
 
   def rank
     @genres = Genre.all
     if params[:genre_id]
-      @genre = Genre.find(params[:genre_id])
-      @posts = @genre.posts.all
-      @all_ranks = @posts.find(Favorite.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))
+      @posts = Favorite.joins(:post).where(posts: {genre_id: params[:genre_id]}).group(:post_id).order("count(post_id) desc").limit(10).pluck(:post_id)
+      @all_ranks = Post.find(@posts)
     else
       @all_ranks = Post.find(Favorite.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))
     end
@@ -72,15 +71,6 @@ class Users::PostsController < ApplicationController
       @posts = Post.tagged_with(params[:tag])
       @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(1)
     end
-  end
-
-  # def tag_search
-  #   selection = params[:keyword]
-  #   @posts = Post.sort(selection)
-  # end
-
-  def genre_search
-
   end
 
   private

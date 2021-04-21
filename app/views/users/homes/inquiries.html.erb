@@ -1,0 +1,27 @@
+<div class="contact">
+  <div class="contact-head">
+    <h2><i class="far fa-envelope"></i> お問い合わせ</h2>
+    <p>
+      お名前と内容を入力してください。</br>
+      ゲストログインしている方やログインしていない方への返答は行うことが出来ません。</br>
+      ログインされていない方はログインしてからお問い合わせしてください。
+    </p>
+  </div>
+  <%= form_with model:@inquiry, local: true do |f| %>
+    <div class="contact-form box-dotted-line">
+      <div class="contact-text">
+        <h6>お名前</h6>
+        <%= f.text_field :name, class:"col-md-8" %>
+        <h6>お問い合わせ内容</h6>
+        <%= f.text_area :message, rows:"6", class:"col-md-12" %>
+      </div>
+      <% if user_signed_in? %>
+        <% if current_user.name != "guest5gbcyjsozzkdyyb6" %>
+          <div class="contact-btn">
+            <%= f.submit " 送信 ", class:"btn btn-blue" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

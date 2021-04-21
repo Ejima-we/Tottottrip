@@ -49,10 +49,10 @@
   <!--signinしている場合のみ投稿編集可能-->
     <% if user_signed_in? %>
       <% if current_user.id == @post.user_id %>
-        <%= link_to "投稿を編集する", edit_post_path(@post.id), class:"btn btn-success" %>
+        <%= link_to "投稿を編集する", edit_post_path(@post.id), class:"btn btn-green" %>
       <% end %>
     <% elsif admin_signed_in? %>
-      <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class:"btn btn-danger" %>
+      <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class:"btn btn-red" %>
     <% end %>
     <!--signinしている場合のみフォーム表示-->
     <% if user_signed_in? %>

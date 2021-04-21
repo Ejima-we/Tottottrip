@@ -1,16 +1,16 @@
 <div class="posts">
-  <div class="post">
+  <div class="post article-list">
   <% posts.each do |post| %>
     <div class="post-content">
       <div class="post-index-image">
         <%= link_to post_path(post.id) do %>
-          <%= attachment_image_tag post, :image, :fill, 330, 250, fallback: "no_image.png" %>
+          <%= attachment_image_tag post, :image, :fill, 400, 300, fallback: "no_image.png" %>
         <% end %>
       </div>
       <div class="post-text">
-        <h4><%= post.title %></h4>
+        <h3><%= post.title %></h3>
         <div class="post-genre-like">
-        <p><%= post.genre.name %></p>
+        <h5><%= post.genre.name %></h5>
         <p class="likes"><%= image_tag "favorite2.png" %><%= post.favorites.count %></p>
         </div>
         <p><%= post.created_at.strftime("%Y/%m/%d") %></p>
@@ -18,5 +18,4 @@
     </div>
   <% end %>
   </div>
-  <%= paginate posts %>
 </div>

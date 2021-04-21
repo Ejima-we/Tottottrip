@@ -19,7 +19,7 @@
     <% @genres.each do |genre| %>
       <div class="top-genres">
         <%= link_to posts_path(genre_id: genre.id) do %>
-          <div class="top-genre btn">
+          <div class="top-genre btn btn-blue">
             <%= genre.name %>はこちら
           </div>
         <% end %>
@@ -28,17 +28,18 @@
   </div>
   <div class="top-rank">
     <h3>人気投稿</h3>
-    <div class="top-rank-posts">
+    <div class="top-rank-posts top-posts-slider">
       <% @posts_rank.each.with_index(1) do |post, i| %>
         <div class="top-rank-content post-content">
-          <h6>第<%= i %>位</h6>
+          <h4>第<%= i %>位</h4>
           <div class="top-rank-post-image">
             <%= link_to post_path(post.id) do %>
-              <%= attachment_image_tag post, :image, :fill, 300, 250, fallback: "no_image.png" %>
+              <%= attachment_image_tag post, :image %>
             <% end %>
           </div>
-          <div class="top-rank-pots-title">
+          <div class="top-rank-post-title">
             <h5><%= post.title %></h5>
+            <h6><%= post.created_at.strftime("%Y/%m/%d") %></h6>
           </div>
         </div>
       <% end %>
@@ -46,12 +47,12 @@
   </div>
   <div class="top-new">
     <h3>新着投稿</h3>
-    <div class="top-new-posts">
+    <div class="top-new-posts top-posts-slider">
       <% @posts.each do |post| %>
         <div class="top-new-content post-content">
           <div class="top-rank-post-image">
             <%= link_to post_path(post.id) do %>
-              <%= attachment_image_tag post, :image, :fill, 300, 250, fallback: "no_image.png" %>
+              <%= attachment_image_tag post, :image %>
             <% end %>
           </div>
           <div class="top-rank-pots-title">

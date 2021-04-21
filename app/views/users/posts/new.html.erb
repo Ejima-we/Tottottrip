@@ -1,42 +1,4 @@
-<div class="main">
-<h1>新規投稿<i class="fas fa-feather"></i></h1>
-   <div class="post-content">
-  <table class="table table-borderless">
-    <%= form_with model:@post, local: true do |f| %>
-      <tr>
-        <td>画像</td>
-        <td><%= f.attachment_field :image %></td>
-      </tr>
-      <tr>
-        <td>タイトル</td>
-        <td><%= f.text_field :title, class:"col-6" %></td>
-      </tr>
-      <tr>
-        <td>詳細</td>
-        <td><%= f.text_area :body, rows:"5", class:"col-6" %></td>
-      </tr>
-      <tr>
-        <td>ジャンル名</td>
-        <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %></td>
-      </tr>
-      <tr>
-        <td>価格</td>
-        <td><%= f.text_area :price, class:"col-6" %></td>
-      </tr>
-      <tr>
-        <td>所在地</td>
-        <td><%= f.text_field :address, class:"col-6" %></td>
-      </tr>
-      <tr>
-        <td>タグ</td>
-        <td>
-          <%= f.text_field :tag_list, value: @post.tag_list.join(','), class:"col-6" %>
-        </td>
-      </tr>
-      <tr>
-        <td><%= f.submit " 登録 ", class:"btn btn-green" %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
+<div class="post-new">
+  <h1>新規投稿<i class="fas fa-feather"></i></h1>
+  <%= render "form", post: @post, submit: "新規登録", btn: "btn btn-green" %>
 </div>

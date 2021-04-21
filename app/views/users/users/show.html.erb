@@ -1,7 +1,6 @@
-<div class="container">
-  <h1>マイページ</h1>
-  <div class="row">
-    <div class="col-md-8">
+<div class="mypage">
+  <div class="user-info">
+    <h3>ユーザー情報</h3>
     <table class="table table-borderless">
       <tr>
         <td>名前</td>
@@ -16,8 +15,51 @@
         <td><%= @user.profile %></td>
       </tr>
     </table>
-    <%= link_to "お気に入り", user_favorites_path(@user.id), class:"btn btn-primary" %>
-    <%= link_to "会員情報編集", edit_information_path, class:"ml-3 btn btn-info" %>
-    </div>
+  <%= link_to "会員情報編集", edit_information_path, class:"ml-3 btn btn-blue" %>
   </div>
+  <div class="user-favorite-posts">
+    <ul class="tab">
+      <li><%= link_to "お気に入り一覧", "#favorite" %></li>
+      <li><%= link_to "あなたの投稿一覧", "#user-posts" %></li>
+    </ul>
+    <div id="favorite" class="post post-area">
+      <% @favorites.each do |favorite| %>
+        <div class="post-content">
+          <% post = Post.find_by(id: favorite.post_id) %>
+          <div class="post-image">
+            <%= link_to post_path(post.id) do %>
+              <%= attachment_image_tag post, :image, :fill, 330, 250, fallback: "no_image.jpg" %>
+            <% end %>
+          </div>
+          <div class="post-text">
+            <h4><%= post.title %></h4>
+            <div class="post-genre-like">
+              <p><%= post.genre.name %></p>
+              <p class="likes"><%= image_tag "favorite2.png" %><%= post.favorites.count %></p>
+            </div>
+            <p><%= post.created_at.strftime("%Y/%m/%d") %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div id="user-posts" class="post post-area">
+      <% @posts.each do |post| %>
+        <div class="post-content">
+          <div class="post-image">
+            <%= link_to post_path(post.id) do %>
+              <%= attachment_image_tag post, :image, :fill, 330, 250, fallback: "no_image.jpg" %>
+            <% end %>
+          </div>
+          <div class="post-text">
+            <h4><%= post.title %></h4>
+            <div class="post-genre-like">
+              <p><%= post.genre.name %></p>
+              <p class="likes"><%= image_tag "favorite2.png" %><%= post.favorites.count %></p>
+            </div>
+            <p><%= post.created_at.strftime("%Y/%m/%d") %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </div>
 </div>
