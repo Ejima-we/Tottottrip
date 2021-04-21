@@ -29,9 +29,8 @@ class Users::PostsController < ApplicationController
   def rank
     @genres = Genre.all
     if params[:genre_id]
-      @genre = Genre.find(params[:genre_id])
-      @posts = @genre.postss.all
-      @all_ranks = @posts.find(Favorite.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))
+      @posts = Favorite.joins(:post).where(posts: {genre_id: params[:genre_id]}).group(:post_id).order("count(post_id) desc").limit(10).pluck(:post_id)
+      @all_ranks = Post.find(@posts)
     else
       @all_ranks = Post.find(Favorite.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))
     end
