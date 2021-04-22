@@ -18,7 +18,7 @@
   <div class="top-genres">
     <% @genres.each do |genre| %>
       <div class="top-genres">
-        <%= link_to posts_genre_path(genre_id: genre.id) do %>
+        <%= link_to posts_path(genre_id: genre.id) do %>
           <div class="top-genre btn btn-blue">
             <%= genre.name %>はこちら
           </div>

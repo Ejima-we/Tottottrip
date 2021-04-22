@@ -1,14 +1,30 @@
 <div class="posts-index">
-  <div class="posts-searches">
-    <div class="posts-search">
-      <%= search_form_for @q do |f| %>
-        検索
-        <%= f.search_field :title_cont, class:"col-8" %>
-        <%= f.submit " 検索 " %>
+  <% if @genre.present? %>
+    <h1><i class="fas fa-kiwi-bird"></i> <%= @genre.name %></h1>
+    <div class="posts-index-link">
+      <% @no_genres.each do |genre| %>
+        <div class="posts-index-genre-btn">
+          <%= link_to posts_path(genre_id: genre.id) do %>
+            <i class="fas fa-hand-point-right"></i> <%= genre.name %>はこちら
+          <% end %>
+        </div>
+      <% end %>
+      <div class="posts-index-btn">
+        <%= link_to posts_path do %>
+          <i class="fas fa-hand-point-right"></i> 全ての投稿はこちら
+        <% end %>
+      </div>
+    <% else %>
+      <h1><i class="fas fa-kiwi-bird"></i> 全ての投稿</h1>
+      <% @genres.each do |genre| %>
+        <div class="posts-index-genre-btn">
+          <%= link_to posts_path(genre_id: genre.id) do %>
+            <i class="fas fa-hand-point-right"></i> <%= genre.name %>はこちら
+          <% end %>
+        </div>
       <% end %>
     </div>
-  </div>
-
-
+  <% end %>
+  <%= render "search_form", q: @q, tags: @tags %>
   <%= render "search_result", posts: @posts_all %>
 </div>

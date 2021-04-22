@@ -15,21 +15,27 @@ class Users::PostsController < ApplicationController
   end
 
   def index
+    @tags = Post.tags_on(:tags)
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
-    @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(20)
-  end
-
-  def genre
-    @genre = Genre.find(params[:genre_id])
-    @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
-    @posts_all = @posts.where(genre_id: @genre.id).order(created_at: "DESC").page(params[:page]).per(20)
+    @genres = Genre.all
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @no_genres = Genre.where.not(id: @genre.id)
+      @posts_all = Post.where(genre_id: @genre.id).order(created_at: "DESC").page(params[:page]).per(20)
+    else
+      @posts = @q.result(distinct: true)
+      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(20)
+    end
   end
 
   def rank
     @genres = Genre.all
+    @q = Post.ransack(params[:q])
+    @tags = Post.tags_on(:tags)
+    @genres = Genre.all
     if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @no_genres = Genre.where.not(id: @genre.id)
       @posts = Favorite.joins(:post).where(posts: {genre_id: params[:genre_id]}).group(:post_id).order("count(post_id) desc").limit(10).pluck(:post_id)
       @all_ranks = Post.find(@posts)
     else
@@ -65,12 +71,14 @@ class Users::PostsController < ApplicationController
   end
 
   def tag
+    @q = Post.ransack(params[:q])
     # タグをPostモデルから降順で取得
     @tags = Post.tag_counts_on(:tags).order(created_at: :desc)
     if @tag = params[:tag]
       # タグに紐付く投稿 　tagged_with 絞り込み検索するメソッド
+      @tags_all = Post.tags_on(:tags)
       @posts = Post.tagged_with(params[:tag])
-      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(1)
+      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(20)
     end
   end
 

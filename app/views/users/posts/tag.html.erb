@@ -1,6 +1,7 @@
-<div class="container">
+<div class="posts-tag">
 <% if @posts_all.present? %>
-    <h1>「<%= @tag %>」に関連する投稿</h1>
+    <h1><i class="fas fa-kiwi-bird"></i> 「<%= @tag %>」に関連する投稿</h1>
+    <%= render "search_form", q: @q, tags: @tags_all %>
     <%= render "search_result", posts: @posts_all %>
 <% end %>
 </div>

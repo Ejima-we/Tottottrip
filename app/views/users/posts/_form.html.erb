@@ -41,9 +41,10 @@
       <tr>
         <td>タグ</td>
         <td>
-          <%= f.text_field :tag_list, value: post.tag_list.join(','), class:"col-6" %>
+          <%= f.text_field :tag_list, value: post.tag_list.join(','), class:"col-6", placeholder: "複数付ける場合は「,」で区切ってください" %>
         </td>
       </tr>
+        <td></td>
       <tr>
         <td><%= f.submit submit, class:btn %></td>
       </tr>

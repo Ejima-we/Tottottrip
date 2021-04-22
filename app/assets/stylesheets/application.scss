@@ -361,10 +361,20 @@ td {
 
 .btn-red {
   background-color: #f67775;
+  opacity: 0.8;
+}
+
+.btn-red:hover {
+  opacity: 1;
 }
 
 .btn-yellow {
   background-color: #f7dc9d;
+  opacity: 0.8;
+}
+
+.btn-yellow:hover {
+  opacity: 1;
 }
 
 // -----------topページ------------------------
@@ -657,11 +667,49 @@ td {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
+  border-left: 1px solid #dcdcdc;
+}
+
+.posts-index h1 {
+  text-align: center;
+}
+
+.posts-index-btn a {
+  color: #4d4545;
+}
+
+.posts-index-genre-btn a {
+  color: #4d4545;
 }
 
 .posts-searches {
+  margin-top: 30px;
+  width: 20%;
+  float: left;
+}
+
+.posts-search {
+  width: 90%;
+}
+
+.posts-search-tags {
+  margin-top: 10px;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.posts-search-tags a {
+  margin: 5px;
+}
+
+.posts-search-field {
+  width: 100%;
+}
+
+.posts-search-btn {
+  margin-top: 5px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .post-content {
@@ -702,12 +750,20 @@ margin: 20px auto;
 	width: 30px;/*ローディング画像のサイズ*/
 }
 
+.posts-tag h1 {
+  text-align: center;
+}
+
 // ----------------ランキングページ---------------------------
 .genre-rank {
   display: flex;
   justify-content: space-around;
 }
 
+.posts-rank h1 {
+  text-align: center;
+  color: #f7dc9d;
+}
 // -------------------マイページ------------------------------
 .user-info {
   border-right: 1px solid #dcdcdc;
