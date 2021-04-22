@@ -47,9 +47,6 @@ header {
   margin: 0 auto;
 }
 
-.container {
-  padding-top: 40px;
-}
 // ヘッダーのボタン
 .openbtn {
   position: fixed;
@@ -399,12 +396,7 @@ td {
 
 .top-visual-slick {
   width: 100%;
-  height: 45vw;
-}
-
-.slick-track {
-  width: 100%;
-  height: 45vw;
+  height: auto;
 }
 
 .top-visual-content {
@@ -419,20 +411,9 @@ td {
   color: #000;
 }
 
-.image-1 {
-  background-image: image-url("nagasaki1.jpg");
-}
-
-.image-2 {
-  background-image: image-url("nagasaki2.jpg");
-}
-
-.image-3 {
-  background-image: image-url("nagasaki3.jpg");
-}
-
-.image-4 {
-  background-image: image-url("nagasaki4.jpg");
+.top-visual-image {
+  width: 100%;
+  height: 50vw;
 }
 
 .about-image {
@@ -547,22 +528,22 @@ td {
 }
 
 .slick-dots {
-  text-align:center;
-	margin:20px 0 0 0;
+  text-align: center;
+	margin: 20px 0 0 0;
 }
 
 .slick-dots li {
-  display:inline-block;
-	margin:0 5px;
+  display: inline-block;
+	margin: 0 5px;
 }
 
 .slick-dots button {
   color: transparent;
   outline: none;
-  width:8px;
-  height:8px;
-  display:block;
-  border-radius:50%;
+  width: 8px;
+  height: 8px;
+  display: block;
+  border-radius: 50%;
   background:#ccc;
 }
 
@@ -611,14 +592,31 @@ td {
 }
 
 // ----------------投稿詳細画面-------------------------------------
+.post-show-images {
+  width: 100%;
+}
+
 .post-show-image {
-  margin: 20px 0;
+  width: 80%;
+  height: 40vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .post-show-image img {
   margin: 0 auto;
   width: 80%;
   height: 40vw;
+}
+.post-show-no {
+  margin: 0 auto;
+  width: 60%;
+}
+.post-show-no-image {
+  margin: 0 auto;
+  width: 100%;
+  height: 35vw;
 }
 
 .post-time-likes {

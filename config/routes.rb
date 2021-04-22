@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     patch "users/information" => "users#update"
     get "posts/ranks" => "posts#rank"
     get "posts/tags" => "posts#tag"
+    get "posts/:genre_id/genre" => "posts#genre", as: "posts_genre"
     resources :posts do
       resources :comments, only: [:edit, :create, :update, :destroy]
       resource :favorites, only: [:create, :destroy]

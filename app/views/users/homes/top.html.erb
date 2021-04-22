@@ -1,10 +1,10 @@
 <div class="top">
   <div class="top-visual">
     <div class="top-visual-slick">
-      <div class="top-visual-content image-1"></div>
-      <div class="top-visual-content image-2"></div>
-      <div class="top-visual-content image-3"></div>
-      <div class="top-visual-content image-4"></div>
+      <div class="top-visual-content"><%= image_tag "nagasaki1.jpg", class:"top-visual-image" %></div>
+      <div class="top-visual-content"><%= image_tag "nagasaki2.jpg", class:"top-visual-image" %></div>
+      <div class="top-visual-content"><%= image_tag "nagasaki3.jpg", class:"top-visual-image" %></div>
+      <div class="top-visual-content"><%= image_tag "nagasaki4.jpg", class:"top-visual-image" %></div>
     </div>
   </div>
   <div class="about">
@@ -18,7 +18,7 @@
   <div class="top-genres">
     <% @genres.each do |genre| %>
       <div class="top-genres">
-        <%= link_to posts_path(genre_id: genre.id) do %>
+        <%= link_to posts_genre_path(genre_id: genre.id) do %>
           <div class="top-genre btn btn-blue">
             <%= genre.name %>はこちら
           </div>
@@ -34,7 +34,7 @@
           <h4>第<%= i %>位</h4>
           <div class="top-rank-post-image">
             <%= link_to post_path(post.id) do %>
-              <%= attachment_image_tag post, :image %>
+              <%= attachment_image_tag post.post_images[0], :image, fallback: "no_image.png" %>
             <% end %>
           </div>
           <div class="top-rank-post-title">
@@ -52,7 +52,7 @@
         <div class="top-new-content post-content">
           <div class="top-rank-post-image">
             <%= link_to post_path(post.id) do %>
-              <%= attachment_image_tag post, :image %>
+              <%= attachment_image_tag post.post_images[0], :image, fallback: "no_image.png" %>
             <% end %>
           </div>
           <div class="top-rank-pots-title">

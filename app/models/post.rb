@@ -13,15 +13,15 @@ class Post < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
 
-  def self.sort(selection)
-    case selection
-    when "new"
-      return all.order(created_at: :DESC)
-    when "old"
-      return all.order(created_ad: :ASC)
-    when "favorites"
-      return find(Favorite.group(:post_id).order(Arel.sql("count(post_id) desc")).pluck(:post_id))
-    end
-  end
+  # def self.sort(selection)
+  #   case selection
+  #   when "new"
+  #     return all.order(created_at: :DESC)
+  #   when "old"
+  #     return all.order(created_ad: :ASC)
+  #   when "favorites"
+  #     return find(Favorite.group(:post_id).order(Arel.sql("count(post_id) desc")).pluck(:post_id))
+  #   end
+  # end
 
 end

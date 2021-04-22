@@ -1,0 +1,14 @@
+<div class="posts-genre">
+  <div class="posts-searches">
+    <div class="posts-search">
+      <%= search_form_for @q do |f| %>
+        検索
+        <%= f.search_field :title_cont, class:"col-8" %>
+        <%= f.submit " 検索 " %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <%= render "search_result", posts: @posts_all %>
+</div>
