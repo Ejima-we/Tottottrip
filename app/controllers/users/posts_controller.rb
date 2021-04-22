@@ -17,7 +17,6 @@ class Users::PostsController < ApplicationController
   def index
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
-    byebug
     @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(20)
   end
 
@@ -25,7 +24,6 @@ class Users::PostsController < ApplicationController
     @genre = Genre.find(params[:genre_id])
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
-    # byebug
     @posts_all = @posts.where(genre_id: @genre.id).order(created_at: "DESC").page(params[:page]).per(20)
   end
 
