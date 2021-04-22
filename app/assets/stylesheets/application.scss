@@ -525,7 +525,7 @@ td {
 }
 
 /*戻る、次へ矢印の位置*/
-.slick-prev,.slick-next {
+.slick-prev:before,.slick-next:before {
   position: absolute;
   top: 42%;
   cursor: pointer;
@@ -536,12 +536,12 @@ td {
   width: 15px;
 }
 
-.slick-prev {
+.slick-prev:before {
   left: -1.5%;
   transform: rotate(-135deg);
 }
 
-.slick-next {
+.slick-next:before {
   right: -1.5%;
   transform: rotate(45deg);
 }

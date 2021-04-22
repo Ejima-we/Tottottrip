@@ -82,6 +82,7 @@ $('#page-top').click(function () {
       autoplaySpeed: 3000,
       speed: 400,
       fade: true,
+      arrows: false,
     });
   });
   $('.comment-form-btn').on('click', function () {
@@ -95,6 +96,14 @@ $('#page-top').click(function () {
     $(this).next().slideToggle(200);
     // 矢印の向きを変更
     $(this).toggleClass('open', 200);
+  });
+  
+  $('#post_image').on('change', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $("#preview").attr('src', e.target.result);
+    }
+    reader.readAsDataURL(e.target.files[0]);
   });
 
   //無限読み込みInfiniteScroll
