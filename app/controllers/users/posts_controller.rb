@@ -15,15 +15,18 @@ class Users::PostsController < ApplicationController
   end
 
   def index
-    if params[:genre_id]
-      @genre = Genre.find(params[:genre_id])
-      @q = Post.ransack(params[:q])
-      @posts_all = @genre.posts.order(created_at: "DESC").page(params[:page]).per(20)
-    else
-      @q = Post.ransack(params[:q])
-      @posts = @q.result(distinct: true)
-      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(20)
-    end
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true)
+    byebug
+    @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(20)
+  end
+
+  def genre
+    @genre = Genre.find(params[:genre_id])
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true)
+    # byebug
+    @posts_all = @posts.where(genre_id: @genre.id).order(created_at: "DESC").page(params[:page]).per(20)
   end
 
   def rank
@@ -76,7 +79,7 @@ class Users::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :genre_id, :title, :body, :image, :price, :address, :tag_list)
+    params.require(:post).permit(:user_id, :genre_id, :title, :body, :price, :address, :tag_list, post_images_images:[])
   end
 
 end

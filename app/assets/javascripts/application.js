@@ -82,6 +82,7 @@ $('#page-top').click(function () {
       autoplaySpeed: 3000,
       speed: 400,
       fade: true,
+      arrows: false,
     });
   });
   $('.comment-form-btn').on('click', function () {
@@ -96,6 +97,43 @@ $('#page-top').click(function () {
     // 矢印の向きを変更
     $(this).toggleClass('open', 200);
   });
+
+  $('#post_post_images_images').on('change', function (e) {
+
+    if(e.target.files.length > 5){
+
+      alert('一度に投稿できるのは五枚までです。');
+      // 五枚以上の画像を選択していた場合、選択したファイルをリセット。
+      $('#post_post_images_images').val = "";
+
+      // 以前の画像のプレビューが残っていた場合は、
+      // まだ画像選択できていると勘違いを誘発するため初期化。
+      for( let i = 0; i < 5; i++) {
+        $(`#preview_${i}`).attr('src', "");
+      }
+
+    }else{
+      let reader = new Array(5);
+
+      // 画像選択を二回した時、一回目より数が少なかったりすると画面上に残るので初期化
+      for( let i = 0; i < 5; i++) {
+        $(`#preview_${i}`).attr('src', "");
+      }
+
+      for(let i = 0; i < e.target.files.length; i++) {
+        reader[i] = new FileReader();
+        reader[i].onload = finisher(i,e);
+        reader[i].readAsDataURL(e.target.files[i]);
+
+        // onloadは別関数で準備しないとfor文内では使用できないので、関数を準備。
+        function finisher(i,e){
+          return function(e){
+          $(`#preview_${i}`).attr('src', e.target.result);
+          }
+        }
+      }
+   }
+});
 
   //無限読み込みInfiniteScroll
 // 	$('.article-list').infinitescroll({	//無限読み込みをさせたい要素を囲う親のクラス名を指定
@@ -147,7 +185,7 @@ $('#page-top').click(function () {
   	GethashID (hashName);//設定したタブの読み込み
   });
 
-  	$('.top-posts-slider').slick({
+  $('.top-posts-slider').slick({
 		autoplay: true,//自動的に動き出すか。初期値はfalse。
 		infinite: true,//スライドをループさせるかどうか。初期値はtrue。
 		slidesToShow: 3,//スライドを画面に3枚見せる
@@ -172,6 +210,20 @@ $('#page-top').click(function () {
 		}
 	]
 	});
+	
+	$('.post-show-images-slick').slick({
+		autoplay: true,//自動的に動き出すか。初期値はfalse。
+		autoplaySpeed: 3000,//次のスライドに切り替わる待ち時間
+		speed:1000,//スライドの動きのスピード。初期値は300。
+		infinite: true,//スライドをループさせるかどうか。初期値はtrue。
+		slidesToShow: 1,//スライドを画面に3枚見せる
+		slidesToScroll: 1,//1回のスクロールで3枚の写真を移動して見せる
+		arrows: true,//左右の矢印あり
+		dots: true,//下部ドットナビゲーションの表示
+        pauseOnFocus: false,//フォーカスで一時停止を無効
+        pauseOnHover: false,//マウスホバーで一時停止を無効
+        pauseOnDotsHover: false,//ドットナビゲーションをマウスホバーで一時停止を無効
+    });
 
   //テキストのカウントアップ+バーの設定
   var bar = new ProgressBar.Line(splash_text, {//id名を指定

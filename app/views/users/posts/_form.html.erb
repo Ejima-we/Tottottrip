@@ -3,7 +3,20 @@
     <%= form_with model:post, local: true do |f| %>
       <tr>
         <td>画像</td>
-        <td><%= f.attachment_field :image %></td>
+        <td><%= f.attachment_field :post_images_images, multiple: true %></td>
+      </tr>
+      <tr>
+        <td colspan="2">(画像サイズによって正しく表示されない場合があります)</td>
+      </tr>
+      <tr>
+        <td>プレビュー</td>
+        <td>
+          <img id="preview_0" style="width:15%;">
+          <img id="preview_1" style="width:15%;">
+          <img id="preview_2" style="width:15%;">
+          <img id="preview_3" style="width:15%;">
+          <img id="preview_4" style="width:15%;">
+        </td>
       </tr>
       <tr>
         <td>タイトル</td>
