@@ -1,11 +1,12 @@
 class Post < ApplicationRecord
 
   belongs_to :user
+  has_many :post_images
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   belongs_to :genre
 
-  attachment :image
+  accepts_attachments_for :post_images, attachment: :image
   acts_as_taggable
 
   def favorited_by?(user)

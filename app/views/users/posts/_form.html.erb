@@ -3,7 +3,8 @@
     <%= form_with model:post, local: true do |f| %>
       <tr>
         <td>画像</td>
-        <td><%= f.attachment_field :image, multiple: true %></td>
+        <td><%= f.attachment_field :post_images_images, multiple: true %></td>
+        <td><%= f.attachment_field :post_images_images, multiple: true %></td>
       </tr>
       <tr>
         <td>プレビュー</td>

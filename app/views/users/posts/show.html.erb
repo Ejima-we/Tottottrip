@@ -1,6 +1,8 @@
 <div class="main">
   <div class="post-show-image">
-    <%= attachment_image_tag @post, :image %>
+    <% @post.post_images.each do |image| %>
+      <%= attachment_image_tag image, :image %>
+    <% end %>
   </div>
   <div class="post-details">
     <h2><%= @post.title %></h2>
