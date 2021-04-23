@@ -1,7 +1,7 @@
 class Users::HomesController < ApplicationController
-  
-  before_action :authenticate_user, only: [:inquiries, :mail]
-  before_action :authenticate_guest_user, only: [:inquiries, :mail]
+
+  before_action :authenticate_user, only: [:mail, :done]
+  before_action :authenticate_guest_user, only: [:mail, :done]
 
   def top
     @genres = Genre.all
@@ -12,10 +12,10 @@ class Users::HomesController < ApplicationController
   def inquiries
     @inquiry = Inquiry.new
   end
-  
+
   def mail
-    inquiry = Inquiry.new(contact_params)
-    if user_signed_in? 
+    inquiry = Inquiry.new(inquiry_params)
+    if user_signed_in?
       if current_user.name != "guest5gbcyjsozzkdyyb6"
         inquiry.email = current_user.email
       end
@@ -23,13 +23,13 @@ class Users::HomesController < ApplicationController
     InquiryMailer.send_mail(inquiry).deliver_now
     redirect_to done_path
   end
-  
+
   def done
   end
-  
+
   private
-  
-  def contact_params
+
+  def inquiry_params
     params.require(:inquiry).permit(:name, :message)
   end
 end
