@@ -1,4 +1,15 @@
 ja:
+  activerecord:
+    models:
+      post: "投稿"
+    attributes:
+      post:
+        title: "タイトル"
+        body: "詳細"
+        genre: "ターゲット"
+  errors:
+      messages:
+        blank: "が記入されていません"
   views:
     pagination:
       first: <i class="fas fa-angle-double-left"></i>

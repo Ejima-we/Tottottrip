@@ -19,9 +19,9 @@ Rails.application.routes.draw do
 
   scope module: :users do
     root "homes#top"
-    get "inquiries" => "homes#inquiries", as: "inquiries"
-    post "inquiries" => "homes#mail"
-    get "done" => "homes#done", as: "done"
+    get "inquiries" => "inquiries#inquiries", as: "inquiries"
+    post "inquiries" => "inquiries#mail"
+    get "done" => "inquiries#done", as: "done"
     get "users/mypage" => "users#show", as: "mypage"
     get "users/leave" => "users#leave"
     patch "users/withdraw" => "users#withdraw"
@@ -29,7 +29,6 @@ Rails.application.routes.draw do
     patch "users/information" => "users#update"
     get "posts/ranks" => "posts#rank"
     get "posts/tags" => "posts#tag"
-    get "posts/:genre_id/genre" => "posts#genre", as: "posts_genre"
     resources :posts do
       resources :comments, only: [:edit, :create, :update, :destroy]
       resource :favorites, only: [:create, :destroy]

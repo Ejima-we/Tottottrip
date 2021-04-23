@@ -1,4 +1,18 @@
-<%= form_with model:post, url: tag_search_path, method: :get, local: true do |f| %>
-  <%= f.select :keyword, [ ["投稿が新しい順", "new"], ["投稿が古い順", "old"], ["いいねが多い順", "favorites"]] %>
-  <%= f.submit " 並び替え " %>
-<% end %>
+<div class="posts-searches">
+  <div class="posts-search">
+    <%= search_form_for q do |f| %>
+      <%= f.search_field :title_cont, class:"posts-search-field"%>
+      <div class="posts-search-btn">
+        <%= f.submit " 検索 ", class:"btn btn-blue" %>
+      </div>
+    <% end %>
+  </div>
+  <% if tags.present? %>
+    <!--投稿についているタグを表示-->
+    <div class="posts-search-tags">
+      <% tags.each do |tag| %>
+        <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_tags_path(tag: tag.name) %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

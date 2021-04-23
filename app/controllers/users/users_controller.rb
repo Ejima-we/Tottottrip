@@ -1,5 +1,7 @@
 class Users::UsersController < ApplicationController
-  # before_action :authenticate_guest_user
+  
+  before_action :authenticate_user
+  before_action :authenticate_guest_user
 
   def show
     @user = current_user

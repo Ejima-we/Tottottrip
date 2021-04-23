@@ -83,6 +83,9 @@ $('#page-top').click(function () {
       speed: 400,
       fade: true,
       arrows: false,
+      pauseOnFocus: false,//フォーカスで一時停止を無効
+      pauseOnHover: false,//マウスホバーで一時停止を無効
+      pauseOnDotsHover: false,//ドットナビゲーションをマウスホバーで一時停止を無効
     });
   });
   $('.comment-form-btn').on('click', function () {
@@ -135,21 +138,6 @@ $('#page-top').click(function () {
    }
 });
 
-  //無限読み込みInfiniteScroll
-// 	$('.article-list').infinitescroll({	//無限読み込みをさせたい要素を囲う親のクラス名を指定
-// 		navSelector  : ".navigation",//次のページを読み込むリンクを囲んでいるクラス名を指定
-// 		nextSelector : ".navigation a",//次のページにリンクする要素を指定
-// 		itemSelector : ".article-list li",//無限スクロールで表示をさせたい要素を指定
-// 		maxPage : 5,///読み込む全体のページ数。入れないと連番でURLが読まれて404エラーが出る
-// 		animate: true, //アニメーション処理を行う
-// 			loading: {
-// 			finishedMsg: "全ての記事が読み込まれました", //全ての要素が読み込まれた後の終了メッセージ
-// 			msgText: "読み込み中", //ローディング中の表示テキスト
-// 			img: 'svg/loading.svg', //ローディング中の画像を指定
-// 		},
-// 	});
-
-	$('.article-list').hide().delay(100).fadeIn(900);//0.9秒かけてフェードイン
 
    //任意のタブにURLからリンクするための設定
   function GethashID (hashIDName){
@@ -190,6 +178,7 @@ $('#page-top').click(function () {
 		infinite: true,//スライドをループさせるかどうか。初期値はtrue。
 		slidesToShow: 3,//スライドを画面に3枚見せる
 		slidesToScroll: 3,//1回のスクロールで3枚の写真を移動して見せる
+		arrows: true,//左右の矢印あり
 		prevArrow: '<div class="slick-prev"></div>',//矢印部分PreviewのHTMLを変更
 		nextArrow: '<div class="slick-next"></div>',//矢印部分NextのHTMLを変更
 		dots: true,//下部ドットナビゲーションの表示
@@ -210,7 +199,7 @@ $('#page-top').click(function () {
 		}
 	]
 	});
-	
+
 	$('.post-show-images-slick').slick({
 		autoplay: true,//自動的に動き出すか。初期値はfalse。
 		autoplaySpeed: 3000,//次のスライドに切り替わる待ち時間
@@ -220,10 +209,10 @@ $('#page-top').click(function () {
 		slidesToScroll: 1,//1回のスクロールで3枚の写真を移動して見せる
 		arrows: true,//左右の矢印あり
 		dots: true,//下部ドットナビゲーションの表示
-        pauseOnFocus: false,//フォーカスで一時停止を無効
-        pauseOnHover: false,//マウスホバーで一時停止を無効
-        pauseOnDotsHover: false,//ドットナビゲーションをマウスホバーで一時停止を無効
-    });
+    pauseOnFocus: false,//フォーカスで一時停止を無効
+    pauseOnHover: false,//マウスホバーで一時停止を無効
+    pauseOnDotsHover: false,//ドットナビゲーションをマウスホバーで一時停止を無効
+  });
 
   //テキストのカウントアップ+バーの設定
   var bar = new ProgressBar.Line(splash_text, {//id名を指定
