@@ -7,13 +7,19 @@
   <div>
     <ul class="footer-list">
       <% if user_signed_in? %>
-        <li><%= link_to "NewPost", new_post_path %></li>
-        <li><%= link_to "Posts", posts_path %></li>
-        <li><%= link_to "Ranking", posts_ranks_path %></li>
-        <li><%= link_to "Mypage", mypage_path %></li>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <% if current_user.name == "guest5gbcyjsozzkdyyb6" %>
+          <li><%= link_to "Posts", posts_path %></li>
+          <li><%= link_to "Ranking", posts_ranks_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "NewPost", new_post_path %></li>
+          <li><%= link_to "Posts", posts_path %></li>
+          <li><%= link_to "Ranking", posts_ranks_path %></li>
+          <li><%= link_to "Mypage", mypage_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          <% end %>
       <% elsif admin_signed_in? %>
-        <li><%= link_to "Posts", admins_posts_path %></li>
+        <li><%= link_to "Posts", posts_path %></li>
         <li><%= link_to "Users", admins_users_path %></li>
         <li><%= link_to "Genres", admins_genres_path %></li>
         <li><%= link_to "Logout", destroy_admin_session_path, method: :delete %></li>
