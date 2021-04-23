@@ -83,6 +83,9 @@ $('#page-top').click(function () {
       speed: 400,
       fade: true,
       arrows: false,
+      pauseOnFocus: false,//フォーカスで一時停止を無効
+      pauseOnHover: false,//マウスホバーで一時停止を無効
+      pauseOnDotsHover: false,//ドットナビゲーションをマウスホバーで一時停止を無効
     });
   });
   $('.comment-form-btn').on('click', function () {
@@ -190,6 +193,7 @@ $('#page-top').click(function () {
 		infinite: true,//スライドをループさせるかどうか。初期値はtrue。
 		slidesToShow: 3,//スライドを画面に3枚見せる
 		slidesToScroll: 3,//1回のスクロールで3枚の写真を移動して見せる
+		arrows: true,//左右の矢印あり
 		prevArrow: '<div class="slick-prev"></div>',//矢印部分PreviewのHTMLを変更
 		nextArrow: '<div class="slick-next"></div>',//矢印部分NextのHTMLを変更
 		dots: true,//下部ドットナビゲーションの表示
@@ -210,7 +214,7 @@ $('#page-top').click(function () {
 		}
 	]
 	});
-	
+
 	$('.post-show-images-slick').slick({
 		autoplay: true,//自動的に動き出すか。初期値はfalse。
 		autoplaySpeed: 3000,//次のスライドに切り替わる待ち時間
@@ -220,10 +224,10 @@ $('#page-top').click(function () {
 		slidesToScroll: 1,//1回のスクロールで3枚の写真を移動して見せる
 		arrows: true,//左右の矢印あり
 		dots: true,//下部ドットナビゲーションの表示
-        pauseOnFocus: false,//フォーカスで一時停止を無効
-        pauseOnHover: false,//マウスホバーで一時停止を無効
-        pauseOnDotsHover: false,//ドットナビゲーションをマウスホバーで一時停止を無効
-    });
+    pauseOnFocus: false,//フォーカスで一時停止を無効
+    pauseOnHover: false,//マウスホバーで一時停止を無効
+    pauseOnDotsHover: false,//ドットナビゲーションをマウスホバーで一時停止を無効
+  });
 
   //テキストのカウントアップ+バーの設定
   var bar = new ProgressBar.Line(splash_text, {//id名を指定

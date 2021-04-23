@@ -317,7 +317,7 @@ footer {
   color: #fff;
   text-decoration: none;
 }
-// --------------main--------------------------
+// -----------------------------main--------------------------
 body {
   background-color: #f6f6f6;
   color: #4d4545;
@@ -377,7 +377,11 @@ td {
   opacity: 1;
 }
 
-// -----------topページ------------------------
+.message-text {
+  color: #f67775;
+}
+
+// ---------------------------topページ------------------------
 #splash {
   // fixedで全面に固定
 	position: fixed;
@@ -507,58 +511,9 @@ td {
   height: auto;
 }
 
-.top-rank-content .top-new-content {
-  height: auto;
-}
 
-.top-posts-slider .slick-slide {
-  margin: 0 10px;
-}
-
-/*戻る、次へ矢印の位置*/
-.slick-prev:before,.slick-next:before {
-  position: absolute;
-  top: 42%;
-  cursor: pointer;
-  outline: none;/*クリックをしたら出てくる枠線を消す*/
-  border-top: 2px solid #666;
-  border-right: 2px solid #666;
-  height: 15px;
-  width: 15px;
-}
-
-.slick-prev:before {
-  left: -1.5%;
-  transform: rotate(-135deg);
-}
-
-.slick-next:before {
-  right: -1.5%;
-  transform: rotate(45deg);
-}
-
-.slick-dots {
-  text-align: center;
-	margin: 20px 0 0 0;
-}
-
-.slick-dots li {
-  display: inline-block;
-	margin: 0 5px;
-}
-
-.slick-dots button {
-  color: transparent;
-  outline: none;
-  width: 8px;
-  height: 8px;
-  display: block;
-  border-radius: 50%;
-  background:#ccc;
-}
-
-.slick-dots .slick-active button{
-  background:#333;
+.top-posts-slider {
+  margin: 0 auto;
 }
 
 // ---------------お問い合わせ画面----------------------------------
@@ -619,10 +574,12 @@ td {
   width: 80%;
   height: 40vw;
 }
+
 .post-show-no {
   margin: 0 auto;
   width: 60%;
 }
+
 .post-show-no-image {
   margin: 0 auto;
   width: 100%;

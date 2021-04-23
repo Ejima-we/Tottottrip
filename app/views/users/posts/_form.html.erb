@@ -1,4 +1,9 @@
 <div class="post-content">
+  <% if @post.errors.any? %>
+    <% @post.errors.full_messages.each do |message| %>
+      <p class="message-text"><i class="fas fa-exclamation-triangle"></i> <%= message %></p>
+    <% end %>
+  <% end %>
   <table class="table table-borderless">
     <%= form_with model:post, local: true do |f| %>
       <tr>

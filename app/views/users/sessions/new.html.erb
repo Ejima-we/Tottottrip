@@ -4,6 +4,7 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="row my-3">
       <div class="col-md-8 box-dotted-line">
+        <%= flash[:alert] %>
         <table class="table table-borderless my-5">
           <tr>
             <td>Eメール</td>

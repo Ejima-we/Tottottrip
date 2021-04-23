@@ -10,15 +10,17 @@ class ApplicationController < ActionController::Base
   
   # 会員側バリデーション
   def authenticate_user
-    if current_user == nil
+    if (current_user == nil) && (current_admin == nil)
       redirect_to new_user_session_path
     end
   end
 
   # ゲストユーザー側バリテーション
   def authenticate_guest_user
-    if current_user.email == "guest@example.com"
-      redirect_to root_path, alert: "ゲストユーザーは出来ません"
+    if current_user != nil
+      if current_user.name == "guest5gbcyjsozzkdyyb6"
+        redirect_to root_path
+      end
     end
   end
 

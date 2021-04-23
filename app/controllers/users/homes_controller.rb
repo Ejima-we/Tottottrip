@@ -1,4 +1,7 @@
 class Users::HomesController < ApplicationController
+  
+  before_action :authenticate_user, only: [:inquiries, :mail]
+  before_action :authenticate_guest_user, only: [:inquiries, :mail]
 
   def top
     @genres = Genre.all

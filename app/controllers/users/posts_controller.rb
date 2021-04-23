@@ -1,5 +1,8 @@
 class Users::PostsController < ApplicationController
 
+  before_action :authenticate_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_guest_user, only: [:new, :create, :edit, :update, :destroy]
+
   def new
     @post = Post.new
   end
@@ -21,10 +24,10 @@ class Users::PostsController < ApplicationController
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @no_genres = Genre.where.not(id: @genre.id)
-      @posts_all = Post.where(genre_id: @genre.id).order(created_at: "DESC").page(params[:page]).per(20)
+      @posts_all = Post.where(genre_id: @genre.id).order(created_at: "DESC").page(params[:page]).per(18)
     else
       @posts = @q.result(distinct: true)
-      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(20)
+      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(18)
     end
   end
 
@@ -36,10 +39,10 @@ class Users::PostsController < ApplicationController
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @no_genres = Genre.where.not(id: @genre.id)
-      @posts = Favorite.joins(:post).where(posts: {genre_id: params[:genre_id]}).group(:post_id).order("count(post_id) desc").limit(10).pluck(:post_id)
+      @posts = Favorite.joins(:post).where(posts: {genre_id: params[:genre_id]}).group(:post_id).order("count(post_id) desc").limit(15).pluck(:post_id)
       @all_ranks = Post.find(@posts)
     else
-      @all_ranks = Post.find(Favorite.group(:post_id).order("count(post_id)desc").limit(10).pluck(:post_id))
+      @all_ranks = Post.find(Favorite.group(:post_id).order("count(post_id)desc").limit(15).pluck(:post_id))
     end
   end
 
