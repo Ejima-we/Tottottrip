@@ -28,15 +28,17 @@
         <%= render "users/favorites/favorites-btn", { post: @post} %>
       </div>
     <% else %>
-        <p class="likes">いいね<i class="fas fa-heart"></i><%= @post.favorites.count %></p>
+        <p class="likes"><%= image_tag "favorite2.png" %><%= @post.favorites.count %></p>
     <% end %>
     </div>
   </div>
   <% if @tags.present? %>
   <!--投稿についているタグを表示-->
-    <% @tags.each do |tag| %>
-      <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_tags_path(tag: tag.name) %>
-    <% end %>
+    <div class="post-show-tags">
+      <% @tags.each do |tag| %>
+        <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_tags_path(tag: tag.name) %>
+      <% end %>
+    </div>
   <% end %>
   <table class="table table-border">
     <% if @post.body.present? %>
@@ -64,16 +66,17 @@
         <%= link_to "投稿を編集する", edit_post_path(@post.id), class:"btn btn-green" %>
       <% end %>
     <% elsif admin_signed_in? %>
-      <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class:"btn btn-red" %>
+      <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class:"btn btn-red", data: {confirm: "削除しますか？"} %>
     <% end %>
     <!--signinしている場合のみフォーム表示-->
     <% if user_signed_in? %>
-      <h4 class="comment-form-btn">　コメント入力フォーム　<i class="fas fa-chevron-circle-down"></i></h4>
+      <h4 class="comment-form-btn comment-btn">　コメント入力フォーム　<i class="fas fa-chevron-circle-down"></i></h4>
         <!--コメントフォームの部分テンプレート-->
       <div class="comment-form">
         <%= render partial: "users/comments/comments-form", locals: { post: @post, comment: @comment } %>
       </div>
     <% end %>
+  <h4 class="comment-index-btn comment-btn">　コメント一覧　<i class="fas fa-chevron-circle-down"></i></h4>
   <div class="comment-index">
     <!--コメント一覧の部分テンプレート-->
     <%= render partial: "users/comments/comments-index", locals: { post: @post } %>

@@ -1,7 +1,7 @@
 <div class="post-edit">
   <h1><i class="far fa-edit"></i> 編集</h1>
   <%= render "form", post: @post, submit: "更新", btn: "btn btn-green" %>
-  <%= link_to post_path(@post.id), method: :delete, class:"btn btn-red" do %>
+  <%= link_to post_path(@post.id), method: :delete, class:"btn btn-red", data: {confirm: "削除しますか？"} do %>
     <i class="fas fa-exclamation-triangle"></i> 投稿を削除する
   <% end %>
 </div>

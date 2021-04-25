@@ -1,5 +1,5 @@
 class Admins::GenresController < ApplicationController
-  
+
   before_action :authenticate_admin
 
   def index
@@ -16,6 +16,7 @@ class Admins::GenresController < ApplicationController
     if @genre.save
       redirect_back(fallback_location: root_path)
     else
+      @genres = Genre.all
       render :index
     end
   end

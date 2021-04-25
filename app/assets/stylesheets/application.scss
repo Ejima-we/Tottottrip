@@ -600,20 +600,32 @@ td {
   color: #4d4545;
 }
 
+.post-show-tags a {
+  color: #4d4545;
+}
+
 .table-border {
   border: solid 1px #dcdcdc;
 }
 
-.comment-form-btn {
+.comment-btn {
   margin-top: 30px;
   background-color: #bad7df;
   color: #fff;
-  width: 330px;
   cursor: pointer;
   border-radius: 50px;
 }
 
-.comment-form {
+.comment-form-btn {
+  width: 330px;
+}
+
+.comment-index-btn {
+  width: 240px;
+}
+
+.comment-form,
+.comment-index {
   display: none;
 }
 
@@ -687,10 +699,6 @@ td {
   margin: 0 5px;
 }
 
-.likes {
-  color: red;
-}
-
 .likes img {
   width: 75px;
   height: 22px;
@@ -710,6 +718,10 @@ margin: 20px auto;
   text-align: center;
 }
 
+.posts-search-tags a {
+  color: #4d4545;
+}
+
 // ----------------ランキングページ---------------------------
 .genre-rank {
   display: flex;
@@ -722,16 +734,14 @@ margin: 20px auto;
 }
 // -------------------マイページ------------------------------
 .user-info {
-  border-right: 1px solid #dcdcdc;
+  margin-top: 100px;
   width: 20%;
   float: left;
   height: auto;
-  min-height: 600px;
 }
 
 .user-favorite-posts {
   width: 100%;
-  min-height: 600px;
 }
 
 /*tabの形状*/

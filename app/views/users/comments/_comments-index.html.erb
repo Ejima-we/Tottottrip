@@ -1,5 +1,5 @@
 <table class="table">
-  <% post.comments.each do |comment| %>
+  <% post.comments.reverse.each do |comment| %>
     <div class="comment_<%= comment.id %>">
       <tr>
         <td>
