@@ -1,12 +1,12 @@
 <div class="main">
   <h1>ターゲット編集</h1>
-  <table class="table">
-    <%= form_with model:[:admins, @genre], local:true do |f| %>
-      <tr>
-        <td><%= f.text_field :name %></td>
-        <td><%= f.submit "編集", class:"btn btn-success" %></td>
-        <td><%= link_to "削除", admins_genre_path, class:"btn btn-danger", method: :delete, data: {confirm: "削除しますか？"} %></td>
-      </tr>
-    <% end %>
-  </table>
+  <%= form_with model:[:admins, @genre], local:true do |f| %>
+    <table class="table">
+        <tr>
+          <td><%= f.text_field :name %></td>
+          <td><%= f.submit "編集", class:"btn btn-success" %></td>
+          <td><%= link_to "削除", admins_genre_path, class:"btn btn-danger", method: :delete, data: {confirm: "削除しますか？"} %></td>
+        </tr>
+    </table>
+  <% end %>
 </div>

@@ -4,55 +4,55 @@
       <p class="message-text"><i class="fas fa-exclamation-triangle"></i> <%= message %></p>
     <% end %>
   <% end %>
-  <table class="table table-borderless">
-    <%= form_with model:post, local: true do |f| %>
-      <tr>
-        <td>画像</td>
-        <td><%= f.attachment_field :post_images_images, multiple: true %></td>
-      </tr>
-      <tr>
-        <td colspan="2">(画像サイズによって正しく表示されない場合があります)</td>
-      </tr>
-      <tr>
-        <td>プレビュー</td>
-        <td>
-          <img id="preview_0" style="width:15%;">
-          <img id="preview_1" style="width:15%;">
-          <img id="preview_2" style="width:15%;">
-          <img id="preview_3" style="width:15%;">
-          <img id="preview_4" style="width:15%;">
-        </td>
-      </tr>
-      <tr>
-        <td>タイトル</td>
-        <td><%= f.text_field :title, class:"col-6" %></td>
-      </tr>
-      <tr>
-        <td>詳細</td>
-        <td><%= f.text_area :body, rows:"5", class:"col-6" %></td>
-      </tr>
-      <tr>
-        <td>ジャンル名</td>
-        <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %></td>
-      </tr>
-      <tr>
-        <td>価格</td>
-        <td><%= f.text_area :price, class:"col-6" %></td>
-      </tr>
-      <tr>
-        <td>所在地</td>
-        <td><%= f.text_field :address, class:"col-6" %></td>
-      </tr>
-      <tr>
-        <td>タグ</td>
-        <td>
-          <%= f.text_field :tag_list, value: post.tag_list.join(','), class:"col-6", placeholder: "複数付ける場合は「,」で区切ってください" %>
-        </td>
-      </tr>
-        <td></td>
-      <tr>
-        <td><%= f.submit submit, class:btn %></td>
-      </tr>
-    <% end %>
-  </table>
+  <%= form_with model:post, local: true do |f| %>
+    <table class="table table-borderless">
+        <tr>
+          <td>画像</td>
+          <td><%= f.attachment_field :post_images_images, multiple: true %></td>
+        </tr>
+        <tr>
+          <td colspan="2">(画像サイズによって正しく表示されない場合があります)</td>
+        </tr>
+        <tr>
+          <td>プレビュー</td>
+          <td>
+            <img id="preview_0" style="width:15%;">
+            <img id="preview_1" style="width:15%;">
+            <img id="preview_2" style="width:15%;">
+            <img id="preview_3" style="width:15%;">
+            <img id="preview_4" style="width:15%;">
+          </td>
+        </tr>
+        <tr>
+          <td>タイトル</td>
+          <td><%= f.text_field :title, class:"col-6" %></td>
+        </tr>
+        <tr>
+          <td>詳細</td>
+          <td><%= f.text_area :body, rows:"5", class:"col-6" %></td>
+        </tr>
+        <tr>
+          <td>ターゲット</td>
+          <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %></td>
+        </tr>
+        <tr>
+          <td>価格</td>
+          <td><%= f.text_area :price, class:"col-6" %></td>
+        </tr>
+        <tr>
+          <td>所在地</td>
+          <td><%= f.text_field :address, class:"col-6" %></td>
+        </tr>
+        <tr>
+          <td>タグ</td>
+          <td>
+            <%= f.text_field :tag_list, value: post.tag_list.join(','), class:"col-6", placeholder: "複数付ける場合は「,」で区切ってください" %>
+          </td>
+        </tr>
+          <td></td>
+        <tr>
+          <td><%= f.submit submit, class:btn %></td>
+        </tr>
+    </table>
+  <% end %>
 </div>

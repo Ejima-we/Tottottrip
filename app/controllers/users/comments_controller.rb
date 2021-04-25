@@ -11,21 +11,6 @@ class Users::CommentsController < ApplicationController
     render :index
   end
   
-  # def edit
-  #   @post = Post.find(params[:post_id])
-  #   @comment = Comment.find(params[:id])
-  # end
-  
-  # def update
-  #   @post = Post.find(params[:post_id])
-  #   @comment = Comment.find_by(id: params[:id], post_id: params[:post_id])
-  #   if @comment.update(comment_params)
-  #     redirect_to post_path(@post.id)
-  #   else
-  #     render :show
-  #   end
-  # end
-  
   def destroy
     @post = Post.find(params[:post_id])
     @comment = Comment.find_by(id: params[:id], post_id: params[:post_id])

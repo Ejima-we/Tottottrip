@@ -27,7 +27,7 @@ class Users::PostsController < ApplicationController
       @posts_all = Post.where(genre_id: @genre.id).order(created_at: "DESC").page(params[:page]).per(18)
     else
       @posts = @q.result(distinct: true)
-      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(5)
+      @posts_all = @posts.order(created_at: "DESC").page(params[:page]).per(18)
     end
   end
 
