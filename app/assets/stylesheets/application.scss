@@ -788,3 +788,13 @@ margin: 20px auto;
 		opacity: 1;
 	}
 }
+
+.pagination>li>a {
+  color: #fff;
+  background-color: #748cf8;
+}
+
+.pagination>.active>a {
+  color: #fff;
+  background-color: #748cf8;
+}
