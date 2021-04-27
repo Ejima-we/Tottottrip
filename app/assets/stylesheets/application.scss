@@ -629,6 +629,10 @@ td {
   display: none;
 }
 
+.comment-no {
+  display: none;
+}
+
 // ---------------------投稿一覧画面---------------------------------
 .post {
   display: flex;
@@ -787,4 +791,17 @@ margin: 20px auto;
 	to {
 		opacity: 1;
 	}
+}
+
+.pagination>li>a:hover {
+  background-color: #748cf8;
+  color: #fff;
+  opacity: 1;
+}
+
+.page-item.active,
+.page-link {
+  background-color: #748cf8;
+  color: #fff;
+  opacity: 0.8;
 }

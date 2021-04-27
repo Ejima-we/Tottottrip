@@ -1,10 +1,9 @@
 class Admins::UsersController < ApplicationController
-
   before_action :authenticate_admin
 
   def index
-    @users = User.all.order(created_at: "DESC").page(params[:page]).per(30)
-    @guest_user = User.where(name: "guest5gbcyjsozzkdyyb6")
+    @users = User.all.order(created_at: 'DESC').page(params[:page]).per(30)
+    @guest_user = User.where(name: 'guest5gbcyjsozzkdyyb6')
   end
 
   def edit
@@ -21,7 +20,7 @@ class Admins::UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.where(name: "guest5gbcyjsozzkdyyb6")
+    @user = User.where(name: 'guest5gbcyjsozzkdyyb6')
     @user.destroy_all
     redirect_back(fallback_location: root_path)
   end

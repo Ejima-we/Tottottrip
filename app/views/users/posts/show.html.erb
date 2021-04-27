@@ -76,9 +76,13 @@
         <%= render partial: "users/comments/comments-form", locals: { post: @post, comment: @comment } %>
       </div>
     <% end %>
-  <h4 class="comment-index-btn comment-btn">　コメント一覧　<i class="fas fa-chevron-circle-down"></i></h4>
-  <div class="comment-index">
-    <!--コメント一覧の部分テンプレート-->
-    <%= render partial: "users/comments/comments-index", locals: { post: @post } %>
-  </div>
+      <h4 class="comment-index-btn comment-btn">　コメント一覧　<i class="fas fa-chevron-circle-down"></i></h4>
+    <% if @post.comments.present? %>
+      <div class="comment-index">
+        <!--コメント一覧の部分テンプレート-->
+        <%= render partial: "users/comments/comments-index", locals: { post: @post } %>
+      </div>
+    <% else %>
+      <h5 class="comment-no">まだこの投稿に対してのコメントはありません</h5>
+    <% end %>
 </div>

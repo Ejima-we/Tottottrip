@@ -6,7 +6,7 @@ class Users::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   # GET /resource/sign_in
@@ -28,14 +28,12 @@ class Users::SessionsController < Devise::SessionsController
 
   def reject_user
     @user = User.find_by(email: params[:user][:email])
-    if @user
-      if (@user.valid_password?(params[:user][:password])) && (@user.active_for_authentication? == false)
-        redirect_to new_user_session_path
-      end
+    if @user && (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false))
+      redirect_to new_user_session_path
     end
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     root_path
   end
 
