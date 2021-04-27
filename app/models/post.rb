@@ -1,5 +1,4 @@
 class Post < ApplicationRecord
-
   belongs_to :user
   has_many :post_images
   has_many :comments, dependent: :destroy
@@ -11,7 +10,6 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
-
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
@@ -27,5 +25,4 @@ class Post < ApplicationRecord
   #     return find(Favorite.group(:post_id).order(Arel.sql("count(post_id) desc")).pluck(:post_id))
   #   end
   # end
-
 end

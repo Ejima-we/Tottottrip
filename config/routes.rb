@@ -1,41 +1,41 @@
 Rails.application.routes.draw do
   devise_for :admins, controllers: {
-    sessions: "admins/sessions",
+    sessions: 'admins/sessions'
   }
   namespace :admins do
-    resources :users, only: [:index, :edit, :update, :destroy]
+    resources :users, only: %i[index edit update destroy]
     resources :posts, only: :index
-    resources :genres, only: [:index, :edit, :create, :update, :destroy]
+    resources :genres, only: %i[index edit create update destroy]
   end
 
   devise_for :users, controllers: {
-    sessions: "users/sessions",
-    registrations: "users/registrations",
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
   }
 
   devise_scope :user do
-    post "users/guest_sign_in" => "users/sessions#guest_sign_in"
+    post 'users/guest_sign_in' => 'users/sessions#guest_sign_in'
   end
 
   scope module: :users do
-    root "homes#top"
-    get "inquiries" => "inquiries#inquiries", as: "inquiries"
-    post "inquiries" => "inquiries#mail"
-    get "done" => "inquiries#done", as: "done"
-    get "users/mypage" => "users#show", as: "mypage"
-    get "users/leave" => "users#leave"
-    patch "users/withdraw" => "users#withdraw"
-    get "users/information/edit" => "users#edit", as: "edit_information"
-    patch "users/information" => "users#update"
-    get "posts/ranks" => "posts#rank"
-    get "posts/tags" => "posts#tag"
+    root 'homes#top'
+    get 'inquiries' => 'inquiries#inquiries', as: 'inquiries'
+    post 'inquiries' => 'inquiries#mail'
+    get 'done' => 'inquiries#done', as: 'done'
+    get 'users/mypage' => 'users#show', as: 'mypage'
+    get 'users/leave' => 'users#leave'
+    patch 'users/withdraw' => 'users#withdraw'
+    get 'users/information/edit' => 'users#edit', as: 'edit_information'
+    patch 'users/information' => 'users#update'
+    get 'posts/ranks' => 'posts#rank'
+    get 'posts/tags' => 'posts#tag'
     resources :posts do
-      resources :comments, only: [:edit, :create, :update, :destroy]
-      resource :favorites, only: [:create, :destroy]
+      resources :comments, only: %i[edit create update destroy]
+      resource :favorites, only: %i[create destroy]
     end
 
-    get "tag_search" => "posts#tag_search"
-    get "search" => "posts#search"
+    get 'tag_search' => 'posts#tag_search'
+    get 'search' => 'posts#search'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

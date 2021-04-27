@@ -3,30 +3,22 @@ class ApplicationController < ActionController::Base
 
   # 管理者側バリデーション
   def authenticate_admin
-    if current_admin == nil
-      redirect_to new_admin_session_path
-    end
+    redirect_to new_admin_session_path if current_admin.nil?
   end
-  
+
   # 会員側バリデーション
   def authenticate_user
-    if (current_user == nil) && (current_admin == nil)
-      redirect_to new_user_session_path
-    end
+    redirect_to new_user_session_path if current_user.nil? && current_admin.nil?
   end
 
   # ゲストユーザー側バリテーション
   def authenticate_guest_user
-    if current_user != nil
-      if current_user.name == "guest5gbcyjsozzkdyyb6"
-        redirect_to root_path
-      end
-    end
+    redirect_to root_path unless current_user.nil? && (current_user.name == 'guest5gbcyjsozzkdyyb6')
   end
 
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :nickname])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name nickname])
   end
 end
