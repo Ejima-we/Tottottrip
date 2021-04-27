@@ -12,12 +12,13 @@ class User < ApplicationRecord
   validates :nickname, presence: true
 
   def self.guest
-    user = User.new(email: "#{SecureRandom.alphanumeric}@example.com", password: SecureRandom.urlsafe_base64, name: "guest5gbcyjsozzkdyyb6", nickname: "guest")
+    user = User.new(email: "#{SecureRandom.alphanumeric}@example.com", password: SecureRandom.urlsafe_base64,
+                    name: 'guest5gbcyjsozzkdyyb6', nickname: 'guest')
     user.save
     User.last
   end
 
   def active_for_authentication?
-    super && (self.is_deleted == false)
+    super && (is_deleted == false)
   end
 end
