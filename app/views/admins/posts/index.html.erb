@@ -16,7 +16,15 @@
         <% @posts.each do |post| %>
           <tr>
             <td><%= post.id %></td>
-            <td><%= link_to post.title, post_path(post.id) %></td>
+            <td>
+              <% if post.score.to_f < 0 %>
+                <div class="admin-post-bad">
+                  <%= link_to post.title, post_path(post.id) %>
+                </div>
+              <% else %>
+                <%= link_to post.title, post_path(post.id) %>
+              <% end %>
+            </td>
             <td><%= post.genre.name %></td>
             <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
           </tr>
