@@ -10,6 +10,7 @@ class Users::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @post.score = Language.get_data(post_params[:body])
     if @post.save
       redirect_to posts_path
     else

@@ -19,7 +19,7 @@
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           <% end %>
       <% elsif admin_signed_in? %>
-        <li><%= link_to "Posts", posts_path %></li>
+        <li><%= link_to "Posts", admins_posts_path %></li>
         <li><%= link_to "Users", admins_users_path %></li>
         <li><%= link_to "Genres", admins_genres_path %></li>
         <li><%= link_to "Logout", destroy_admin_session_path, method: :delete %></li>
